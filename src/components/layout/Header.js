@@ -1,228 +1,166 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import Navbar from './Navbar';
+import { Link, useLocation } from 'react-router-dom';
 import LanguageSwitcher from '../common/LanguageSwitcher';
 
 const Header = () => {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
+  // Close mobile menu on route change
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+  // Add scrolled style
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 0);
+    onScroll();
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Close mobile menu when clicking outside
+  // Lock body scroll when mobile menu is open
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (mobileMenuOpen && !event.target.closest('.mobile-menu-container')) {
-        setMobileMenuOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [mobileMenuOpen]);
-
-  // Prevent body scroll when mobile menu is open
-  useEffect(() => {
-    if (mobileMenuOpen) {
+    if (isMobileMenuOpen) {
+      const original = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
+      document.documentElement.classList.add('no-scroll');
+      document.body.classList.add('no-scroll');
+      return () => {
+        document.body.style.overflow = original;
+        document.documentElement.classList.remove('no-scroll');
+        document.body.classList.remove('no-scroll');
+      };
     }
-
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [mobileMenuOpen]);
+  }, [isMobileMenuOpen]);
 
   return (
-    <header 
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out ${
-        scrolled ? 'bg-white/95 backdrop-blur-md shadow-lg py-2' : 'py-4'
-      }`}
-    >
-      <div className="container flex justify-between items-center">
-        <Link to="/" className="flex items-center group">
-          <motion.img 
-            src="/images/removed.png" 
-            alt="Hoxha Engineering Logo" 
-            className="h-10 sm:h-12 md:h-16 mr-2 md:mr-3 transition-transform duration-300 group-hover:scale-105" 
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          />
-          <div className="flex flex-col">
-            <motion.span 
-              className={`text-lg sm:text-xl md:text-2xl font-heading font-bold tracking-wider drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] transition-colors duration-300 ${scrolled ? 'text-primary' : 'text-white'}`}
-              whileHover={{ scale: 1.02 }}
+      <header
+          className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-300 border-b ${
+              isScrolled
+                  ? 'bg-white/90 backdrop-blur shadow border-gray-200'
+                  : 'md:bg-transparent md:shadow-none bg-white shadow border-gray-200'
+          }`}
+      >
+        {/* Overlay gradient on desktop only to avoid bleed, hidden on mobile */}
+        {!isScrolled && (
+            <div className="pointer-events-none absolute inset-0 hidden md:block bg-gradient-to-b from-black/40 to-transparent" />
+        )}
+
+        {/* Top bar */}
+        <div className="relative container h-14 md:h-20 flex items-center justify-between px-4">
+          {/* Logo */}
+          <Link to="/" className="mr-auto flex items-center gap-2">
+           <span
+               className={`transition-colors ${
+                   isScrolled ? 'text-primary' : 'md:text-white text-primary'
+               }`}
+               aria-hidden
+           >
+            <img src={process.env.PUBLIC_URL + '/images/logo.png'} alt="Logo" className="w-8 h-8 md:w-10 md:h-10" />
+          </span>
+            <span className="leading-tight">
+            <span
+                className={`block text-base md:text-lg font-bold transition-colors ${
+                    isScrolled ? 'text-primary' : 'md:text-white text-gray-800'
+                }`}
             >
               HOXHA
-            </motion.span>
-            <motion.span 
-              className={`text-sm sm:text-base md:text-lg font-heading font-bold leading-tight tracking-wide drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)] transition-colors duration-300 ${scrolled ? 'text-gray-900' : 'text-white'}`}
-              whileHover={{ scale: 1.02 }}
+            </span>
+            <span
+                className={`block text-[11px] md:text-xs tracking-wide font-medium transition-colors ${
+                    isScrolled ? 'text-secondary' : 'md:text-white/70 text-gray-600'
+                }`}
             >
               ENGINEERING
-            </motion.span>
-          </div>
-        </Link>
+            </span>
+          </span>
+          </Link>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-8">
-          <Navbar scrolled={scrolled} />
-          <LanguageSwitcher scrolled={scrolled} />
+          {/* Desktop nav */}
+          <nav className="hidden md:flex items-center gap-8">
+            {[
+              { to: '/', label: 'Home' },
+              { to: '/services', label: 'Services' },
+              { to: '/projects', label: 'Projects' },
+              { to: '/about', label: 'About' },
+              { to: '/contact', label: 'Contact' },
+            ].map((item) => (
+                <Link
+                    key={item.to}
+                    to={item.to}
+                    className={`font-medium transition-colors hover:text-primary ${
+                        isScrolled ? 'text-gray-700' : 'md:text-white text-gray-700'
+                    }`}
+                >
+                  {item.label}
+                </Link>
+            ))}
+          </nav>
+
+          {/* Mobile menu button */}
+          <button
+              onClick={() => setIsMobileMenuOpen((v) => !v)}
+              className={`md:hidden ml-3 p-2 rounded-md transition-colors ${
+                  isScrolled ? 'text-gray-700 bg-white border border-gray-200 hover:bg-gray-100' : 'text-gray-700 hover:bg-gray-100'
+              }`}
+              aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-menu"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {isMobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
         </div>
 
-        {/* Mobile Menu Button */}
-        <motion.button 
-          className={`md:hidden p-3 rounded-xl transition-all duration-300 mobile-menu-container ${
-            scrolled 
-              ? 'text-primary bg-white shadow-lg hover:shadow-xl' 
-              : 'text-white bg-black/20 backdrop-blur-sm hover:bg-black/30'
-          }`}
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          <motion.div
-            className="w-6 h-6 flex flex-col justify-center items-center"
-            animate={mobileMenuOpen ? "open" : "closed"}
-            variants={{
-              open: { rotate: 180 },
-              closed: { rotate: 0 }
-            }}
-            transition={{ duration: 0.3 }}
-          >
-            <motion.span
-              className="w-5 h-0.5 bg-current mb-1"
-              variants={{
-                open: { rotate: 45, y: 6 },
-                closed: { rotate: 0, y: 0 }
-              }}
-              transition={{ duration: 0.3 }}
-            />
-            <motion.span
-              className="w-5 h-0.5 bg-current mb-1"
-              variants={{
-                open: { opacity: 0 },
-                closed: { opacity: 1 }
-              }}
-              transition={{ duration: 0.3 }}
-            />
-            <motion.span
-              className="w-5 h-0.5 bg-current"
-              variants={{
-                open: { rotate: -45, y: -6 },
-                closed: { rotate: 0, y: 0 }
-              }}
-              transition={{ duration: 0.3 }}
-            />
-          </motion.div>
-        </motion.button>
-      </div>
-
-      {/* Mobile Menu Overlay */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm md:hidden"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              onClick={() => setMobileMenuOpen(false)}
-            />
-            
-            {/* Mobile Menu */}
-            <motion.div
-              className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-2xl md:hidden mobile-menu-container"
-              initial={{ x: '100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '100%' }}
-              transition={{ 
-                type: "spring", 
-                damping: 25, 
-                stiffness: 200,
-                duration: 0.4 
-              }}
-            >
-              {/* Menu Header */}
-              <div className="flex items-center justify-between p-6 border-b border-gray-200">
-                <div className="flex items-center">
-                  <img src="/images/removed.png" alt="Logo" className="h-8 w-8 mr-3" />
-                  <span className="text-xl font-bold text-primary">HOXHA ENGINEERING</span>
-                </div>
-                <motion.button
-                  className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
-                  onClick={() => setMobileMenuOpen(false)}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </motion.button>
-              </div>
-
-              {/* Menu Content */}
-              <div className="flex flex-col h-full">
-                {/* Navigation */}
-                <div className="flex-1 p-6">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1, duration: 0.3 }}
-                  >
-                    <Navbar mobile={true} scrolled={true} closeMobileMenu={() => setMobileMenuOpen(false)} />
-                  </motion.div>
-                </div>
-
-                {/* Language Switcher */}
-                <div className="p-6 border-t border-gray-200">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2, duration: 0.3 }}
-                  >
-                    <LanguageSwitcher scrolled={true} />
-                  </motion.div>
-                </div>
-
-                {/* Contact Info */}
-                <div className="p-6 bg-gray-50 border-t border-gray-200">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3, duration: 0.3 }}
-                    className="text-center"
-                  >
-                    <p className="text-sm text-gray-600 mb-2">Need immediate assistance?</p>
-                    <a 
-                      href="tel:031424503" 
-                      className="text-primary font-semibold hover:underline"
-                    >
-                      Call: 031424503
-                    </a>
-                  </motion.div>
-                </div>
-              </div>
-            </motion.div>
-          </>
+        {/* Mobile drawer with backdrop */}
+        {/* Backdrop */}
+        {isMobileMenuOpen && (
+            <div className="md:hidden fixed inset-0 z-[180] bg-black/30" onClick={() => setIsMobileMenuOpen(false)}></div>
         )}
-      </AnimatePresence>
-    </header>
+        {/* Panel */}
+        <div
+            id="mobile-menu"
+            className={`md:hidden fixed left-0 right-0 z-[190] origin-top transition-transform ${
+                isMobileMenuOpen ? 'scale-y-100' : 'scale-y-0'
+            } bg-white shadow`}
+            style={{ transformOrigin: 'top', top: '56px' }}
+        >
+          <div className="container py-3 h-[calc(100vh-56px)] overflow-y-auto overscroll-contain flex flex-col">
+            <nav className="flex-1 flex flex-col items-center text-center space-y-3 py-1">
+              {[
+                { to: '/', label: 'Home' },
+                { to: '/projects', label: 'Projects' },
+                { to: '/services', label: 'Services' },
+                { to: '/about', label: 'About' },
+                { to: '/contact', label: 'Contact' },
+              ].map((item) => (
+                  <Link
+                      key={item.to}
+                      to={item.to}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={`text-sm font-medium text-gray-800 hover:text-primary transition-colors relative px-1 py-1 tracking-wide`}
+                  >
+                    <span>{item.label}</span>
+                    {location.pathname === item.to && (
+                        <span className="absolute left-1/2 -translate-x-1/2 -bottom-1.5 w-6 h-0.5 bg-primary rounded" />
+                    )}
+                  </Link>
+              ))}
+            </nav>
+
+            <div className="pt-2 pb-2 border-t border-gray-200 flex justify-start">
+              <LanguageSwitcher scrolled={true} compact={true} />
+            </div>
+          </div>
+        </div>
+      </header>
   );
 };
 
