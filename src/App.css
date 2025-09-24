@@ -1,0 +1,5 @@
+/* App.css - Minimal styles to avoid conflicts with Tailwind */
+.App {
+  width: 100%;
+  min-height: 100vh;
+}

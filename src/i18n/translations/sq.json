@@ -1,0 +1,85 @@
+{
+  "navigation": {
+    "home": "Kryefaqja",
+    "projects": "Projektet",
+    "services": "Shërbimet",
+    "about": "Rreth Nesh",
+    "contact": "Kontakti"
+  },
+  "hero": {
+    "title": "Ndërtojmë Shtëpinë Tuaj të Ëndrrave",
+    "subtitle": "Shërbime profesionale të ndërtimit dhe arkitekturës për projekte rezidenciale dhe komerciale",
+    "servicesBtn": "Shërbimet Tona",
+    "contactBtn": "Na Kontaktoni"
+  },
+  "stats": {
+    "title": "33 Vite Suksesi të Pandërprerë",
+    "description": "Që nga viti 1992, kemi ofruar shërbime ndërtimi të jashtëzakonshme me përkushtim të palëkundur ndaj cilësisë dhe inovacionit. Përvoja jonë e gjerë siguron që çdo projekt të përfundojë sipas standardeve më të larta.",
+    "workWithUs": "Punoni Me Ne",
+    "projectsFinished": "Projekte të Përfunduara",
+    "yearsExperience": "Vite Përvojë",
+    "revenue": "Të ardhura në 2024",
+    "colleagues": "Kolegë"
+  },
+  "services": {
+    "buildYourDream": "Ndërtoni Ëndrrën Tuaj",
+    "qualityServices": "Shërbime Cilësore",
+    "viewAll": "Shiko të gjitha",
+    "residentialBuildings": "Ndërtesa Rezidenciale",
+    "individualBuildings": "Ndërtesa Individuale",
+    "collectiveBuildings": "Ndërtesa Kolektive",
+    "socialBuildings": "Ndërtesa Sociale",
+    "publicBuildings": "Ndërtesa Publike"
+  },
+  "about": {
+    "sustainability": "Qëndrueshmëria",
+    "title": "Të Përkushtuar për të Mbajtur Njerëzit të Shëndetshëm dhe të Sigurt",
+    "description": "Në Hoxha Engineering, ne i japim përparësi qëndrueshmërisë dhe sigurisë në çdo projekt që ndërmarrim. Angazhimi ynë ndaj praktikave të ndërtimit të përgjegjshme ndaj mjedisit siguron që ndërtesat tona jo vetëm që i rezistojnë kohës, por gjithashtu kontribuojnë pozitivisht në komunitetet që ato shërbejnë.",
+    "getInTouch": "Na Kontaktoni",
+    "bestPractices": "Ne Ndjekim Praktikat më të Mira",
+    "practicesDescription": "Metodologjitë tona të ndërtimit u përmbahen standardeve më të larta të industrisë, duke siguruar cilësi dhe qëndrueshmëri të jashtëzakonshme në çdo projekt që ne përfundojmë.",
+    "sustainabilityItem": "Qëndrueshmëria",
+    "onTimeItem": "Projekti në Kohë",
+    "latestDesignsItem": "Dizajnet më të Fundit",
+    "qualityMaterialsItem": "Materiale Cilësore",
+    "expertWorkforceItem": "Fuqi Punëtore Eksperte"
+  },
+  "founders": {
+    "title": "Rreth Themeluesve",
+    "description": "Ne jemi një kompani lokale udhëheqëse në Maqedoninë e Veriut me një histori të pasur të shkëlqimit në ndërtim dhe inxhinieri. Ekipi ynë i lidershipit sjell dekada përvojë dhe pasion për inovacion.",
+    "founder": "Themeluesi",
+    "ceo": "Drejtori Ekzekutiv"
+  },
+  "contact": {
+    "title": "Na Kontaktoni",
+    "mainOffice": "Zyra Kryesore - Kumanovë",
+    "address": "Adresa",
+    "phone": "Telefoni",
+    "email": "Email",
+    "workingHours": "Orari i Punës",
+    "monday": "E hënë deri të premte: 9:00 - 17:00",
+    "saturday": "E shtunë: 9:00 - 13:00",
+    "sunday": "E diel: Mbyllur",
+    "findUsOnMap": "Na Gjeni në Hartë",
+    "getFullInfo": "Merrni Informacionin e Plotë të Kontaktit"
+  },
+  "contactPage": {
+    "getInTouch": "Na Kontaktoni",
+    "contactFormIntro": "Do të donim të dëgjonim nga ju. Ju lutemi plotësoni formularin më poshtë ose na kontaktoni drejtpërdrejt duke përdorur informacionin e dhënë.",
+    "name": "Emri",
+    "namePlaceholder": "Emri Juaj",
+    "email": "Email",
+    "emailPlaceholder": "Email-i Juaj",
+    "message": "Mesazhi",
+    "messagePlaceholder": "Mesazhi Juaj",
+    "sendMessage": "Dërgo Mesazhin",
+    "contactInfo": "Informacioni i Kontaktit"
+  },
+  "footer": {
+    "buildingExcellence": "Ndërtojmë shkëlqimin përmes inovacionit dhe përkushtimit që nga viti 1992.",
+    "quickLinks": "Lidhje të Shpejta",
+    "contact": "Kontakti",
+    "connectWithUs": "Lidhuni Me Ne",
+    "copyright": "© 2024 Hoxha Engineering. Të gjitha të drejtat e rezervuara."
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "navigation": {
+    "home": "Home",
+    "projects": "Projects",
+    "services": "Services",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Building Your Dream Home",
+    "subtitle": "Professional construction and architectural services for residential and commercial projects",
+    "servicesBtn": "Our Services",
+    "contactBtn": "Contact Us"
+  },
+  "stats": {
+    "title": "33 Years Of Undefeated Success",
+    "description": "Since 1992, we've been delivering exceptional construction services with unwavering dedication to quality and innovation. Our extensive experience ensures that every project is completed to the highest standards.",
+    "workWithUs": "Work With Us",
+    "projectsFinished": "Projects Finished",
+    "yearsExperience": "Years Experience",
+    "revenue": "Revenue in 2024",
+    "colleagues": "Colleagues"
+  },
+  "services": {
+    "buildYourDream": "Build Your Dream",
+    "qualityServices": "Quality Services",
+    "viewAll": "View all",
+    "residentialBuildings": "Residential Buildings",
+    "individualBuildings": "Individual Buildings",
+    "collectiveBuildings": "Collective Buildings",
+    "socialBuildings": "Social Buildings",
+    "publicBuildings": "Public Buildings"
+  },
+  "about": {
+    "sustainability": "Sustainability",
+    "title": "Committed To Keep People Healthy & Safe",
+    "description": "At Hoxha Engineering, we prioritize sustainability and safety in every project we undertake. Our commitment to environmentally responsible construction practices ensures that our buildings not only stand the test of time but also contribute positively to the communities they serve.",
+    "getInTouch": "Get In Touch",
+    "bestPractices": "We Follow Best Practices",
+    "practicesDescription": "Our construction methodologies adhere to the highest industry standards, ensuring exceptional quality and durability in every project we complete.",
+    "sustainabilityItem": "Sustainability",
+    "onTimeItem": "Project On Time",
+    "latestDesignsItem": "Latest Designs",
+    "qualityMaterialsItem": "Quality Materials",
+    "expertWorkforceItem": "Expert Workforce"
+  },
+  "founders": {
+    "title": "About Founders",
+    "description": "We are a leading local company in North Macedonia with a rich history of excellence in construction and engineering. Our leadership team brings decades of experience and a passion for innovation.",
+    "founder": "Founder",
+    "ceo": "CEO"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "mainOffice": "Headquarters - Kumanovo",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "workingHours": "Working Hours",
+    "monday": "Monday to Friday: 9:00 AM - 5:00 PM",
+    "saturday": "Saturday: 9:00 AM - 1:00 PM",
+    "sunday": "Sunday: Closed",
+    "findUsOnMap": "Find Us On Map",
+    "getFullInfo": "Get Full Contact Information"
+  },
+  "contactPage": {
+    "getInTouch": "Get In Touch",
+    "contactFormIntro": "We'd love to hear from you. Please fill out the form below or contact us directly using the information provided.",
+    "name": "Name",
+    "namePlaceholder": "Your Name",
+    "email": "Email",
+    "emailPlaceholder": "Your Email",
+    "message": "Message",
+    "messagePlaceholder": "Your Message",
+    "sendMessage": "Send Message",
+    "contactInfo": "Contact Information"
+  },
+  "footer": {
+    "buildingExcellence": "Building excellence through innovation and dedication since 1992.",
+    "quickLinks": "Quick Links",
+    "contact": "Contact",
+    "connectWithUs": "Connect With Us",
+    "copyright": "© 2024 Hoxha Engineering. All rights reserved."
+  }
+}
