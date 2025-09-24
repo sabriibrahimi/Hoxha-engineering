@@ -48,9 +48,9 @@ const Services = () => {
   // Team data
   const teamMembers = [
     {
-      name: 'Labinot Ibrahimi',
-      role: 'Architect',
-      photo: process.env.PUBLIC_URL + '/images/team/labinot.png',
+      name: 'Selman Ajdini',
+      role: 'Founder',
+      photo: process.env.PUBLIC_URL + '/images/Founders/founder.png',
       projects: [
         'Residential Complex “Sunrise” – Lead Architect',
         'Downtown Office Tower – Facade Design',
@@ -59,9 +59,9 @@ const Services = () => {
       bio: 'Specialising in sustainable residential and mixed-use developments for more than 15 years.'
     },
     {
-      name: 'Arben Hoxha',
-      role: 'Civil Engineer',
-      photo: process.env.PUBLIC_URL + '/images/team/arben.png',
+      name: 'Sevdail Ajdini',
+      role: 'CEO',
+      photo: process.env.PUBLIC_URL + '/images/Founders/ceo.png',
       projects: [
         'Mountain Resort Structural Design',
         'High-Rise “Skyline” – Structural Calculations'
@@ -69,9 +69,9 @@ const Services = () => {
       bio: 'Expert in reinforced-concrete and steel structures with deep on-site experience.'
     },
     {
-      name: 'Fitore Kelmendi',
+      name: 'Lead Engineer',
       role: 'Site Supervisor',
-      photo: process.env.PUBLIC_URL + '/images/team/fitore.png',
+      photo: process.env.PUBLIC_URL + '/images/Founders/ceo.png',
       projects: [
         'Regional Hospital Expansion – Site Management',
         'Logistics Hub – Quality & Safety Compliance'
@@ -119,7 +119,7 @@ const Services = () => {
       description: 'We deliver public infrastructure projects that enhance urban environments, with a focus on durability, accessibility, and public service.',
       image: process.env.PUBLIC_URL + '/images/Services_images/public.png',
       icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3m calculateAreaOfCircle4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" />
       </svg>
     },
     {
