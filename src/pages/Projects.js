@@ -52,32 +52,32 @@ const Projects = () => {
     { 
       title: 'Residential Complex', 
       location: 'Kumanovo, North Macedonia', 
-      image: '/images/Services_images/residential.png'
+      image: process.env.PUBLIC_URL + '/images/Services_images/residential.png'
     },
     { 
       title: 'Individual Housing Project', 
       location: 'Skopje, North Macedonia', 
-      image: '/images/Services_images/Individual.png'
+      image: process.env.PUBLIC_URL + '/images/Services_images/Individual.png'
     },
     { 
       title: 'Collective Housing Development', 
       location: 'Tetovo, North Macedonia', 
-      image: '/images/Services_images/collective.png'
+      image: process.env.PUBLIC_URL + '/images/Services_images/collective.png'
     },
     { 
       title: 'Public Administrative Building', 
       location: 'Kumanovo, North Macedonia', 
-      image: '/images/Services_images/public.png'
+      image: process.env.PUBLIC_URL + '/images/Services_images/public.png'
     },
     { 
       title: 'Social Housing Project', 
       location: 'Gostivar, North Macedonia', 
-      image: '/images/Services_images/social.png'
+      image: process.env.PUBLIC_URL + '/images/Services_images/social.png'
     },
     { 
       title: 'Commercial Building', 
       location: 'Skopje, North Macedonia', 
-      image: '/images/Construction_Engineer.png'
+      image: process.env.PUBLIC_URL + '/images/Construction_Engineer.png'
     },
   ];
 
@@ -118,7 +118,7 @@ const Projects = () => {
         <div className="container text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Build Your Next Project?</h2>
           <p className="text-lg mb-8 max-w-3xl mx-auto">Partner with Hoxha Engineering for exceptional construction services backed by 33 years of expertise.</p>
-          <a href="/contact" className="btn bg-white text-primary hover:bg-gray-100 inline-block">Contact Us Now</a>
+          <a href="#/contact" className="btn bg-white text-primary hover:bg-gray-100 inline-block">Contact Us Now</a>
         </div>
       </section>
       
