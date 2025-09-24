@@ -49,8 +49,8 @@ const About = () => {
   });
 
   const team = [
-    { name: 'Selman Ajdini', role: 'Founder', image: '/images/Founders/founder.png' },
-    { name: 'Sevdail Ajdini', role: 'CEO', image: '/images/Founders/ceo.png' }
+    { name: 'Selman Ajdini', role: 'Founder', image: process.env.PUBLIC_URL + '/images/Founders/founder.png' },
+    { name: 'Sevdail Ajdini', role: 'CEO', image: process.env.PUBLIC_URL + '/images/Founders/ceo.png' }
   ];
 
   const statItems = [
@@ -102,7 +102,7 @@ const About = () => {
               className="relative"
             >
               <img 
-                src="/images/Construction_Engineer.png" 
+                src={process.env.PUBLIC_URL + '/images/Construction_Engineer.png'} 
                 alt="About Hoxha Engineering" 
                 className="rounded-lg shadow-xl w-full"
               />
@@ -268,7 +268,7 @@ const About = () => {
         <div className="container text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Work With Us?</h2>
           <p className="text-lg mb-8 max-w-3xl mx-auto">Contact our team today to discuss your construction project and experience the Hoxha Engineering difference.</p>
-          <a href="/contact" className="btn bg-white text-primary hover:bg-gray-100 inline-block">Contact Us</a>
+          <a href="#/contact" className="btn bg-white text-primary hover:bg-gray-100 inline-block">Contact Us</a>
         </div>
       </section>
       

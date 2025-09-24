@@ -8,7 +8,7 @@ const PageBackground = ({ children, title, subtitle }) => {
       <div className="absolute inset-0 w-full h-full overflow-hidden -z-10">
         <div className="relative w-full h-full">
           <img 
-            src="/images/pages.png"
+            src={process.env.PUBLIC_URL + '/images/pages.png'}
             alt="Page background" 
             className="w-full h-full object-cover scale-105 transform will-change-transform transform-gpu"
           />
