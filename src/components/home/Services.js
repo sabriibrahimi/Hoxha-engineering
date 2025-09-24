@@ -19,7 +19,7 @@ const ServiceCard = ({ title, image, delay, index }) => {
       >
         <div className="relative h-64 sm:h-72 md:h-80">
           <img
-              src={process.env.PUBLIC_URL + `/images/Services_images/${image}`}
+              src={process.env.PUBLIC_URL + `/images/Services_images/${image}?v=1`}
               alt={title}
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
