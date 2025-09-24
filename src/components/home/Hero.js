@@ -9,7 +9,7 @@ const Hero = () => {
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <div className="relative w-full h-full">
           <img 
-            src="/images/Homeimage.png" 
+            src={process.env.PUBLIC_URL + '/images/Homeimage.png?v=1'}
             alt="Construction site" 
             className="w-full h-full object-cover object-center"
           />
