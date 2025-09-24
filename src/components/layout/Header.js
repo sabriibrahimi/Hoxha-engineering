@@ -58,7 +58,7 @@ const Header = () => {
                }`}
                aria-hidden
            >
-            <img src={process.env.PUBLIC_URL + '/images/'} alt="Logo" className="w-8 h-8 md:w-10 md:h-10" />w-8 h-8 md:w-10 md:h-10" /{'>'}
+            <img src={process.env.PUBLIC_URL + '/images/removed.png'} alt="Logo" className="w-8 h-8 md:w-10 md:h-10" />
           </span>
             <span className="leading-tight">
             <span
