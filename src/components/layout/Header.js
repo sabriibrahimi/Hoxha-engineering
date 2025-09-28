@@ -137,84 +137,90 @@ const Header = () => {
                         onClick={() => setIsMobileMenuOpen(false)}
                     />
 
-                    {/* Menu Panel - High Visibility & Professional */}
-                    <div className="md:hidden fixed top-14 left-0 right-0 bg-white shadow-2xl border-t-2 border-primary z-50 animate-slideDown">
-                        <div className="p-4">
-                            {/* High Visibility Header */}
-                            <div className="flex justify-between items-center mb-6">
-                                <div className="flex items-center space-x-3">
-                                    <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center shadow-lg">
-                                        <span className="text-white font-bold text-lg">H</span>
+                    {/* Modern Glass Morphism Menu */}
+                    <div className="md:hidden fixed top-14 left-4 right-4 bg-white/10 backdrop-blur-2xl shadow-2xl rounded-3xl border border-white/20 z-50 animate-slideDown">
+                        <div className="p-6">
+                            {/* Modern Header with Gradient */}
+                            <div className="flex justify-between items-center mb-8">
+                                <div className="flex items-center space-x-4">
+                                    <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary-dark rounded-2xl flex items-center justify-center shadow-xl">
+                                        <span className="text-white font-bold text-xl">H</span>
                                     </div>
                                     <div>
-                                        <h3 className="text-xl font-bold text-gray-900">Hoxha Engineering</h3>
+                                        <h3 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">Hoxha Engineering</h3>
                                         <p className="text-sm text-gray-600 font-medium">Building Excellence</p>
                                     </div>
                                 </div>
                                 <button
                                     onClick={() => setIsMobileMenuOpen(false)}
-                                    className="p-2 hover:bg-gray-100 rounded-lg transition-all duration-200 hover:scale-105"
+                                    className="p-3 hover:bg-white/20 rounded-2xl transition-all duration-300 hover:scale-110 backdrop-blur-sm"
                                 >
-                                    <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                                     </svg>
                                 </button>
                             </div>
 
-                            {/* Compact Navigation Links */}
-                            <nav className="space-y-1">
+                            {/* Modern Navigation with Cards */}
+                            <nav className="space-y-3">
                                 {[
-                                    { to: '/', label: 'Home' },
-                                    { to: '/projects', label: 'Projects' },
-                                    { to: '/services', label: 'Services' },
-                                    { to: '/about', label: 'About' },
-                                    { to: '/contact', label: 'Contact' },
+                                    { to: '/', label: 'Home', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
+                                    { to: '/projects', label: 'Projects', icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4' },
+                                    { to: '/services', label: 'Services', icon: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.756-.426-3.31-2.37-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z' },
+                                    { to: '/about', label: 'About', icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z' },
+                                    { to: '/contact', label: 'Contact', icon: 'M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' },
                                 ].map((item, index) => (
                                     <Link
                                         key={item.to}
                                         to={item.to}
                                         onClick={() => setIsMobileMenuOpen(false)}
-                                        className={`group flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-300 hover:scale-[1.02] ${
+                                        className={`group flex items-center space-x-4 px-5 py-4 rounded-2xl transition-all duration-500 hover:scale-105 ${
                                             location.pathname === item.to
-                                                ? 'bg-primary text-white shadow-lg transform scale-[1.02]'
-                                                : 'text-gray-800 hover:bg-gray-100 hover:text-primary hover:shadow-md border border-gray-200'
+                                                ? 'bg-gradient-to-r from-primary to-primary-dark text-white shadow-2xl transform scale-105'
+                                                : 'bg-white/20 backdrop-blur-sm text-gray-700 hover:bg-white/30 hover:shadow-xl border border-white/30'
                                         }`}
                                         style={{
-                                            animationDelay: `${index * 30}ms`,
-                                            animation: 'slideInLeft 0.4s ease-out forwards'
+                                            animationDelay: `${index * 100}ms`,
+                                            animation: 'slideInLeft 0.6s ease-out forwards'
                                         }}
                                     >
-                                        <span className="font-semibold text-base">{item.label}</span>
-                                        {location.pathname === item.to ? (
-                                            <div className="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></div>
-                                        ) : (
-                                            <svg className="w-4 h-4 text-gray-600 group-hover:text-primary transition-all duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                        <div className={`p-2 rounded-xl transition-all duration-300 ${
+                                            location.pathname === item.to ? 'bg-white/20' : 'bg-white/40 group-hover:bg-white/60'
+                                        }`}>
+                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
                                             </svg>
+                                        </div>
+                                        <span className="font-semibold text-lg">{item.label}</span>
+                                        {location.pathname === item.to && (
+                                            <div className="ml-auto">
+                                                <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                                            </div>
                                         )}
                                     </Link>
                                 ))}
                             </nav>
 
-                            {/* High Visibility Language Switcher */}
-                            <div className="mt-6 pt-4 border-t-2 border-gray-200">
-                                <div className="flex justify-center space-x-2">
-                                    <button className="px-4 py-2 bg-primary text-white rounded-lg font-semibold text-sm hover:bg-primary-dark transition-all duration-200 hover:scale-105 shadow-lg">
+                            {/* Modern Language Switcher */}
+                            <div className="mt-8 pt-6 border-t border-white/20">
+                                <div className="flex justify-center space-x-3">
+                                    <button className="px-6 py-3 bg-gradient-to-r from-primary to-primary-dark text-white rounded-2xl font-bold text-sm hover:scale-110 transition-all duration-300 shadow-xl">
                                         AL
                                     </button>
-                                    <button className="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg font-semibold text-sm hover:bg-gray-300 transition-all duration-200 hover:scale-105 border border-gray-300">
+                                    <button className="px-6 py-3 bg-white/20 backdrop-blur-sm text-gray-700 rounded-2xl font-bold text-sm hover:bg-white/30 hover:scale-110 transition-all duration-300 border border-white/30">
                                         MK
                                     </button>
-                                    <button className="px-4 py-2 bg-gray-200 text-gray-800 rounded-lg font-semibold text-sm hover:bg-gray-300 transition-all duration-200 hover:scale-105 border border-gray-300">
+                                    <button className="px-6 py-3 bg-white/20 backdrop-blur-sm text-gray-700 rounded-2xl font-bold text-sm hover:bg-white/30 hover:scale-110 transition-all duration-300 border border-white/30">
                                         EN
                                     </button>
                                 </div>
                             </div>
 
-                            {/* High Visibility Footer */}
-                            <div className="mt-4 pt-3 border-t-2 border-gray-200">
+                            {/* Modern Footer */}
+                            <div className="mt-6 pt-4 border-t border-white/20">
                                 <div className="text-center">
-                                    <p className="text-sm text-gray-700 font-medium">© 2024 Hoxha Engineering</p>
+                                    <p className="text-sm text-gray-600 font-medium">© 2024 Hoxha Engineering</p>
+                                    <p className="text-xs text-gray-500 mt-1">Building Excellence Since 1992</p>
                                 </div>
                             </div>
                         </div>
