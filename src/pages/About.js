@@ -49,8 +49,8 @@ const About = () => {
   });
 
   const team = [
-    { name: 'Selman Ajdini', role: 'Founder', image: process.env.PUBLIC_URL + '/images/Founders/founder.png?v=1' },
-    { name: 'Sevdail Ajdini', role: 'CEO', image: process.env.PUBLIC_URL + '/images/Founders/ceo.png?v=1' }
+    { name: 'Selman Ajdini', role: 'Founder', image: '/Hoxha-engineering/images/Founders/founder.png?v=1' },
+    { name: 'Sevdail Ajdini', role: 'CEO', image: '/Hoxha-engineering/images/Founders/ceo.png?v=1' }
   ];
 
   const statItems = [
@@ -102,7 +102,7 @@ const About = () => {
               className="relative"
             >
               <img 
-                src={process.env.PUBLIC_URL + '/images/Construction_Engineer.png?v=1'} 
+                src='/Hoxha-engineering/images/Construction_Engineer.png?v=1' 
                 alt="About Hoxha Engineering" 
                 className="rounded-lg shadow-xl w-full"
               />

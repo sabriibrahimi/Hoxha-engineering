@@ -52,32 +52,32 @@ const Projects = () => {
     { 
       title: 'Residential Complex', 
       location: 'Kumanovo, North Macedonia', 
-      image: process.env.PUBLIC_URL + '/images/Services_images/residential.png?v=1'
+      image: '/Hoxha-engineering/images/Services_images/residential.png?v=1'
     },
     { 
       title: 'Individual Housing Project', 
       location: 'Skopje, North Macedonia', 
-      image: process.env.PUBLIC_URL + '/images/Services_images/Individual.png?v=1'
+      image: '/Hoxha-engineering/images/Services_images/Individual.png?v=1'
     },
     { 
       title: 'Collective Housing Development', 
       location: 'Tetovo, North Macedonia', 
-      image: process.env.PUBLIC_URL + '/images/Services_images/collective.png?v=1'
+      image: '/Hoxha-engineering/images/Services_images/collective.png?v=1'
     },
     { 
       title: 'Public Administrative Building', 
       location: 'Kumanovo, North Macedonia', 
-      image: process.env.PUBLIC_URL + '/images/Services_images/public.png?v=1'
+      image: '/Hoxha-engineering/images/Services_images/public.png?v=1'
     },
     { 
       title: 'Social Housing Project', 
       location: 'Gostivar, North Macedonia', 
-      image: process.env.PUBLIC_URL + '/images/Services_images/social.png?v=1'
+      image: '/Hoxha-engineering/images/Services_images/social.png?v=1'
     },
     { 
       title: 'Commercial Building', 
       location: 'Skopje, North Macedonia', 
-      image: process.env.PUBLIC_URL + '/images/Construction_Engineer.png?v=1'
+      image: '/Hoxha-engineering/images/Construction_Engineer.png?v=1'
     },
   ];
 

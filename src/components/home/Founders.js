@@ -5,7 +5,7 @@ const FounderCard = ({ name, title, image }) => {
     <div className="bg-white rounded-lg shadow-lg overflow-hidden">
       <div className="relative h-64 overflow-hidden">
         <img 
-          src={process.env.PUBLIC_URL + `/images/Founders/${image}`} 
+          src={`/Hoxha-engineering/images/Founders/${image}`} 
           alt={name} 
           className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105"
         />
