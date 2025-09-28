@@ -51,7 +51,7 @@ const Header = () => {
         {/* Top bar */}
         <div className="relative container h-14 md:h-20 flex items-center justify-between px-4">
           {/* Logo */}
-          <Link to="/" className="mr-auto flex items-center gap-2">
+          <Link to="/" className="mr-auto flex items-center gap-2 ml-8">
            <span
                className={`transition-colors ${
                    isScrolled ? 'text-primary' : 'md:text-white text-primary'
@@ -60,18 +60,20 @@ const Header = () => {
            >
             <img src={process.env.PUBLIC_URL + '/images/removed.png'} alt="Logo" className="w-8 h-8 md:w-10 md:h-10" />
           </span>
-            <span className="leading-tight">
+            <span className="leading-tight ml-6">
             <span
-                className={`block text-base md:text-lg font-bold transition-colors ${
-                    isScrolled ? 'text-primary' : 'md:text-white text-gray-800'
+                className={`block text-2xl md:text-3xl lg:text-4xl font-black transition-colors tracking-tight ${
+                    isScrolled ? 'text-primary' : 'md:text-white text-primary'
                 }`}
+                style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.3)' }}
             >
               HOXHA
             </span>
             <span
-                className={`block text-[11px] md:text-xs tracking-wide font-medium transition-colors ${
-                    isScrolled ? 'text-secondary' : 'md:text-white/70 text-gray-600'
+                className={`block text-base md:text-lg lg:text-xl tracking-wider font-bold transition-colors ${
+                    isScrolled ? 'text-secondary' : 'md:text-white/95 text-secondary'
                 }`}
+                style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.3)' }}
             >
               ENGINEERING
             </span>
