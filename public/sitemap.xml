@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Albanian (Default) -->
+  <url>
+    <loc>https://sabriibrahimi.github.io/Hoxha-engineering/</loc>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://sabriibrahimi.github.io/Hoxha-engineering/" />
+    <xhtml:link rel="alternate" hreflang="mk" href="https://sabriibrahimi.github.io/Hoxha-engineering/mk/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://sabriibrahimi.github.io/Hoxha-engineering/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sabriibrahimi.github.io/Hoxha-engineering/" />
+    <priority>1.0</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <!-- Albanian Pages -->
+  <url>
+    <loc>https://sabriibrahimi.github.io/Hoxha-engineering/projects</loc>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://sabriibrahimi.github.io/Hoxha-engineering/projects" />
+    <xhtml:link rel="alternate" hreflang="mk" href="https://sabriibrahimi.github.io/Hoxha-engineering/mk/projects" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://sabriibrahimi.github.io/Hoxha-engineering/en/projects" />
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://sabriibrahimi.github.io/Hoxha-engineering/services</loc>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://sabriibrahimi.github.io/Hoxha-engineering/services" />
+    <xhtml:link rel="alternate" hreflang="mk" href="https://sabriibrahimi.github.io/Hoxha-engineering/mk/services" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://sabriibrahimi.github.io/Hoxha-engineering/en/services" />
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://sabriibrahimi.github.io/Hoxha-engineering/about</loc>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://sabriibrahimi.github.io/Hoxha-engineering/about" />
+    <xhtml:link rel="alternate" hreflang="mk" href="https://sabriibrahimi.github.io/Hoxha-engineering/mk/about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://sabriibrahimi.github.io/Hoxha-engineering/en/about" />
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://sabriibrahimi.github.io/Hoxha-engineering/contact</loc>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://sabriibrahimi.github.io/Hoxha-engineering/contact" />
+    <xhtml:link rel="alternate" hreflang="mk" href="https://sabriibrahimi.github.io/Hoxha-engineering/mk/contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://sabriibrahimi.github.io/Hoxha-engineering/en/contact" />
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  
+  <!-- Macedonian Pages -->
+  <url>
+    <loc>https://sabriibrahimi.github.io/Hoxha-engineering/mk/</loc>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://sabriibrahimi.github.io/Hoxha-engineering/" />
+    <xhtml:link rel="alternate" hreflang="mk" href="https://sabriibrahimi.github.io/Hoxha-engineering/mk/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://sabriibrahimi.github.io/Hoxha-engineering/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sabriibrahimi.github.io/Hoxha-engineering/" />
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://sabriibrahimi.github.io/Hoxha-engineering/mk/projects</loc>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://sabriibrahimi.github.io/Hoxha-engineering/projects" />
+    <xhtml:link rel="alternate" hreflang="mk" href="https://sabriibrahimi.github.io/Hoxha-engineering/mk/projects" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://sabriibrahimi.github.io/Hoxha-engineering/en/projects" />
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://sabriibrahimi.github.io/Hoxha-engineering/mk/services</loc>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://sabriibrahimi.github.io/Hoxha-engineering/services" />
+    <xhtml:link rel="alternate" hreflang="mk" href="https://sabriibrahimi.github.io/Hoxha-engineering/mk/services" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://sabriibrahimi.github.io/Hoxha-engineering/en/services" />
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://sabriibrahimi.github.io/Hoxha-engineering/mk/about</loc>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://sabriibrahimi.github.io/Hoxha-engineering/about" />
+    <xhtml:link rel="alternate" hreflang="mk" href="https://sabriibrahimi.github.io/Hoxha-engineering/mk/about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://sabriibrahimi.github.io/Hoxha-engineering/en/about" />
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://sabriibrahimi.github.io/Hoxha-engineering/mk/contact</loc>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://sabriibrahimi.github.io/Hoxha-engineering/contact" />
+    <xhtml:link rel="alternate" hreflang="mk" href="https://sabriibrahimi.github.io/Hoxha-engineering/mk/contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://sabriibrahimi.github.io/Hoxha-engineering/en/contact" />
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  
+  <!-- English Pages -->
+  <url>
+    <loc>https://sabriibrahimi.github.io/Hoxha-engineering/en/</loc>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://sabriibrahimi.github.io/Hoxha-engineering/" />
+    <xhtml:link rel="alternate" hreflang="mk" href="https://sabriibrahimi.github.io/Hoxha-engineering/mk/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://sabriibrahimi.github.io/Hoxha-engineering/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://sabriibrahimi.github.io/Hoxha-engineering/" />
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://sabriibrahimi.github.io/Hoxha-engineering/en/projects</loc>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://sabriibrahimi.github.io/Hoxha-engineering/projects" />
+    <xhtml:link rel="alternate" hreflang="mk" href="https://sabriibrahimi.github.io/Hoxha-engineering/mk/projects" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://sabriibrahimi.github.io/Hoxha-engineering/en/projects" />
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://sabriibrahimi.github.io/Hoxha-engineering/en/services</loc>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://sabriibrahimi.github.io/Hoxha-engineering/services" />
+    <xhtml:link rel="alternate" hreflang="mk" href="https://sabriibrahimi.github.io/Hoxha-engineering/mk/services" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://sabriibrahimi.github.io/Hoxha-engineering/en/services" />
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://sabriibrahimi.github.io/Hoxha-engineering/en/about</loc>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://sabriibrahimi.github.io/Hoxha-engineering/about" />
+    <xhtml:link rel="alternate" hreflang="mk" href="https://sabriibrahimi.github.io/Hoxha-engineering/mk/about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://sabriibrahimi.github.io/Hoxha-engineering/en/about" />
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://sabriibrahimi.github.io/Hoxha-engineering/en/contact</loc>
+    <xhtml:link rel="alternate" hreflang="sq" href="https://sabriibrahimi.github.io/Hoxha-engineering/contact" />
+    <xhtml:link rel="alternate" hreflang="mk" href="https://sabriibrahimi.github.io/Hoxha-engineering/mk/contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://sabriibrahimi.github.io/Hoxha-engineering/en/contact" />
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+</urlset>

@@ -1,11 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useTranslation } from 'react-i18next';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import PageBackground from '../components/layout/PageBackground';
 
 const TeamMember = ({ name, role, image, index }) => {
+  const { t } = useTranslation();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -33,6 +35,7 @@ const TeamMember = ({ name, role, image, index }) => {
 };
 
 const About = () => {
+  const { t } = useTranslation();
   const [headerRef, headerInView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -49,15 +52,15 @@ const About = () => {
   });
 
   const team = [
-    { name: 'Selman Ajdini', role: 'Founder', image: '/Hoxha-engineering/images/Founders/founder.png?v=1' },
-    { name: 'Sevdail Ajdini', role: 'CEO', image: '/Hoxha-engineering/images/Founders/ceo.png?v=1' }
+    { name: 'Selman Ajdini', role: t('founders.founder'), image: '/Hoxha-engineering/images/Founders/founder.png?v=1' },
+    { name: 'Sevdail Ajdini', role: t('founders.ceo'), image: '/Hoxha-engineering/images/Founders/ceo.png?v=1' }
   ];
 
   const statItems = [
-    { value: '33+', label: 'Years of Experience' },
-    { value: '512+', label: 'Projects Completed' },
+    { value: '33+', label: t('stats.yearsExperience') },
+    { value: '512+', label: t('stats.projectsFinished') },
     { value: '100%', label: 'Client Satisfaction' },
-    { value: '1520+', label: 'Team Members' },
+    { value: '1520+', label: t('stats.colleagues') },
   ];
 
   return (
@@ -66,8 +69,8 @@ const About = () => {
       
       {/* Hero Section */}
       <PageBackground 
-        title="About Us" 
-        subtitle="Learn about our journey, values, and the team behind Hoxha Engineering"
+        title={t('aboutPage.title')} 
+        subtitle={t('aboutPage.subtitle')}
       />
       
       {/* Our Story Section */}

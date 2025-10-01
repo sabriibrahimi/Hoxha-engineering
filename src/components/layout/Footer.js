@@ -1,7 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Footer = () => {
+  const { t } = useTranslation();
+  
   return (
     <footer className="bg-secondary text-white pt-16 pb-8">
       <div className="container">
@@ -9,24 +12,24 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <h3 className="text-2xl font-bold mb-6">Hoxha Engineering</h3>
-            <p className="mb-4">Building excellence through innovation and dedication since 1992.</p>
+            <p className="mb-4">{t('footer.buildingExcellence')}</p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-xl font-bold mb-6">Quick Links</h3>
+            <h3 className="text-xl font-bold mb-6">{t('footer.quickLinks')}</h3>
             <ul className="space-y-2">
-              <li><Link to="/" className="hover:text-primary transition-colors">Home</Link></li>
-              <li><Link to="/projects" className="hover:text-primary transition-colors">Projects</Link></li>
-              <li><Link to="/services" className="hover:text-primary transition-colors">Services</Link></li>
-              <li><Link to="/about" className="hover:text-primary transition-colors">About Us</Link></li>
-              <li><Link to="/contact" className="hover:text-primary transition-colors">Contact</Link></li>
+              <li><Link to="/" className="hover:text-primary transition-colors">{t('navigation.home')}</Link></li>
+              <li><Link to="/projects" className="hover:text-primary transition-colors">{t('navigation.projects')}</Link></li>
+              <li><Link to="/services" className="hover:text-primary transition-colors">{t('navigation.services')}</Link></li>
+              <li><Link to="/about" className="hover:text-primary transition-colors">{t('navigation.about')}</Link></li>
+              <li><Link to="/contact" className="hover:text-primary transition-colors">{t('navigation.contact')}</Link></li>
             </ul>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-xl font-bold mb-6">Contact</h3>
+            <h3 className="text-xl font-bold mb-6">{t('footer.contact')}</h3>
             <ul className="space-y-3">
               <li className="flex items-start">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -55,7 +58,7 @@ const Footer = () => {
 
           {/* Social Media */}
           <div>
-            <h3 className="text-xl font-bold mb-6">Connect With Us</h3>
+            <h3 className="text-xl font-bold mb-6">{t('footer.connectWithUs')}</h3>
             <div className="flex space-x-4 justify-center">
               <a href="https://www.facebook.com/profile.php?id=100057076855558" target="_blank" rel="noopener noreferrer" className="text-white hover:text-primary transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-facebook" viewBox="0 0 16 16">
@@ -73,7 +76,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="mt-12 pt-8 border-t border-gray-700 text-center">
-          <p>© {new Date().getFullYear()} Hoxha Engineering. All rights reserved.</p>
+          <p>{t('footer.copyright')}</p>
           <p>Developed by <a href="https://sabriibrahimi.github.io/LandingPage/" target="_blank" rel="noopener noreferrer" className="font-bold text-red-500 hover:text-red-600">Sabri Ibrahimi</a></p>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useTranslation } from 'react-i18next';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import PageBackground from '../components/layout/PageBackground';
@@ -39,6 +40,7 @@ const ServiceCard = ({ title, description, icon, image, index }) => {
 };
 
 const Services = () => {
+  const { t } = useTranslation();
   const [selectedMember, setSelectedMember] = useState(null);
   const [headerRef, headerInView] = useInView({
     triggerOnce: true,
@@ -49,10 +51,10 @@ const Services = () => {
   const teamMembers = [
     {
       name: 'Selman Ajdini',
-      role: 'Founder',
+      role: t('founders.founder'),
       photo: '/Hoxha-engineering/images/Founders/founder.png',
       projects: [
-        'Residential Complex “Sunrise” – Lead Architect',
+        'Residential Complex "Sunrise" – Lead Architect',
         'Downtown Office Tower – Facade Design',
         'Eco-Village Masterplan – Concept & Planning'
       ],
@@ -60,11 +62,11 @@ const Services = () => {
     },
     {
       name: 'Sevdail Ajdini',
-      role: 'CEO',
+      role: t('founders.ceo'),
       photo: '/Hoxha-engineering/images/Founders/ceo.png',
       projects: [
         'Mountain Resort Structural Design',
-        'High-Rise “Skyline” – Structural Calculations'
+        'High-Rise "Skyline" – Structural Calculations'
       ],
       bio: 'Expert in reinforced-concrete and steel structures with deep on-site experience.'
     },
@@ -83,7 +85,7 @@ const Services = () => {
   // Using the images we have available
   const services = [
     {
-      title: 'Residential Buildings',
+      title: t('services.residentialBuildings'),
       description: 'We design and construct high-quality residential buildings that blend functionality with aesthetic appeal, creating perfect living spaces for families.',
       image: '/Hoxha-engineering/images/Services_images/residential.png?v=1',
       icon: <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -138,17 +140,17 @@ const Services = () => {
 
         {/* Hero Section */}
         <PageBackground
-            title="Our Services"
-            subtitle="Comprehensive construction solutions tailored to your needs"
+            title={t('servicesPage.title')}
+            subtitle={t('servicesPage.subtitle')}
         />
 
         {/* Team Section */}
         <section className="py-24 bg-gray-50">
           <div className="container">
             <div className="text-center mb-12">
-              <span className="text-xl text-primary font-semibold mb-2 block">Our People</span>
-              <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-6">Meet The Team</h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">Architects, engineers, and on-site professionals working together to turn ideas into reality.</p>
+              <span className="text-xl text-primary font-semibold mb-2 block">{t('aboutPage.team')}</span>
+              <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-6">{t('aboutPage.team')}</h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">{t('aboutPage.teamDescription')}</p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -197,8 +199,8 @@ const Services = () => {
         {/* Workforce stats */}
         <section className="py-16 bg-primary text-white">
           <div className="container text-center">
-            <h3 className="text-3xl md:text-4xl font-bold mb-4">Over 150 Expert Craftsmen & Professionals</h3>
-            <p className="text-lg max-w-3xl mx-auto">From on-site workers to design offices, our multidisciplinary team ensures every project phase is executed with precision.</p>
+            <h3 className="text-3xl md:text-4xl font-bold mb-4">{t('stats.colleagues')} 150+</h3>
+            <p className="text-lg max-w-3xl mx-auto">{t('about.practicesDescription')}</p>
           </div>
         </section>
 
@@ -206,9 +208,9 @@ const Services = () => {
         <section className="py-24">
           <div className="container">
             <div className="text-center mb-12">
-              <span className="text-xl text-primary font-semibold mb-2 block">What We Do</span>
-              <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-6">Our Services</h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">Explore our comprehensive range of construction and design services tailored to meet your needs.</p>
+              <span className="text-xl text-primary font-semibold mb-2 block">{t('servicesPage.title')}</span>
+              <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-6">{t('servicesPage.title')}</h2>
+              <p className="text-lg text-gray-600 max-w-3xl mx-auto">{t('servicesPage.subtitle')}</p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {services.map((service, index) => (
@@ -229,33 +231,33 @@ const Services = () => {
         <section className="bg-accent py-24">
           <div className="container">
             <div className="text-center mb-16">
-              <span className="text-xl text-primary font-semibold mb-2 block">How We Work</span>
-              <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-6">Our Process</h2>
+              <span className="text-xl text-primary font-semibold mb-2 block">{t('servicesPage.projectManagement')}</span>
+              <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-6">{t('servicesPage.projectManagement')}</h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               <div className="text-center">
                 <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">1</div>
-                <h3 className="text-2xl font-bold text-secondary mb-2">Consultation</h3>
-                <p className="text-gray-600">We begin with a thorough consultation to understand your vision, requirements, and budget constraints.</p>
+                <h3 className="text-2xl font-bold text-secondary mb-2">{t('servicesPage.consultation')}</h3>
+                <p className="text-gray-600">{t('servicesPage.consultationDescription')}</p>
               </div>
 
               <div className="text-center">
                 <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">2</div>
-                <h3 className="text-2xl font-bold text-secondary mb-2">Design</h3>
-                <p className="text-gray-600">Our expert architects and engineers create detailed designs and plans tailored to your specifications.</p>
+                <h3 className="text-2xl font-bold text-secondary mb-2">{t('servicesPage.engineeringServices')}</h3>
+                <p className="text-gray-600">{t('servicesPage.engineeringDescription')}</p>
               </div>
 
               <div className="text-center">
                 <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">3</div>
-                <h3 className="text-2xl font-bold text-secondary mb-2">Construction</h3>
-                <p className="text-gray-600">We execute the project with precision, adhering to the highest quality standards and safety protocols.</p>
+                <h3 className="text-2xl font-bold text-secondary mb-2">{t('servicesPage.constructionServices')}</h3>
+                <p className="text-gray-600">{t('servicesPage.constructionDescription')}</p>
               </div>
 
               <div className="text-center">
                 <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">4</div>
-                <h3 className="text-2xl font-bold text-secondary mb-2">Delivery</h3>
-                <p className="text-gray-600">We deliver the completed project on time and provide ongoing support and maintenance services as needed.</p>
+                <h3 className="text-2xl font-bold text-secondary mb-2">{t('common.success')}</h3>
+                <p className="text-gray-600">{t('about.bestPractices')}</p>
               </div>
             </div>
           </div>

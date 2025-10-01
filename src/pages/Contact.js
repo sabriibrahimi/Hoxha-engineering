@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useTranslation } from 'react-i18next';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import PageBackground from '../components/layout/PageBackground';
@@ -31,6 +32,7 @@ const ContactInfo = ({ icon, title, children, delay }) => {
 };
 
 const Contact = () => {
+  const { t } = useTranslation();
   const [headerRef, headerInView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -47,8 +49,8 @@ const Contact = () => {
       
       {/* Hero Section */}
       <PageBackground 
-        title="Contact Us" 
-        subtitle="Get in touch with our team to discuss your construction needs and projects"
+        title={t('contactPage.title')} 
+        subtitle={t('contactPage.subtitle')}
       />
       
       {/* Contact Form and Info Section */}

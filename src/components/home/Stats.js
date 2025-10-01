@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useTranslation } from 'react-i18next';
+import { useLanguageUpdate } from '../../hooks/useLanguageUpdate';
 
 const StatsCounter = ({ value, label, delay }) => {
   const [ref, inView] = useInView({
@@ -30,6 +32,8 @@ const StatsCounter = ({ value, label, delay }) => {
 };
 
 const Stats = () => {
+  const { t } = useTranslation();
+  const updateKey = useLanguageUpdate(); // Force re-render on language change
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -45,20 +49,20 @@ const Stats = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">33 Years Of Undefeated Success</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">{t('stats.title')}</h2>
           <p className="text-lg md:text-xl max-w-3xl mx-auto">
-            Since 1992, we've been delivering exceptional construction services with unwavering dedication to quality and innovation. Our extensive experience ensures that every project is completed to the highest standards.
+            {t('stats.description')}
           </p>
           <div className="mt-8">
-            <a href="#services" className="btn btn-primary">Work With Us</a>
+            <a href="#services" className="btn btn-primary">{t('stats.workWithUs')}</a>
           </div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <StatsCounter value="512+" label="Projects Finished" delay={0.2} />
-          <StatsCounter value="33+" label="Years Experience" delay={0.4} />
-          <StatsCounter value="1120+" label="Revenue in 2024" delay={0.6} />
-          <StatsCounter value="1520+" label="Colleagues" delay={0.8} />
+          <StatsCounter value="512+" label={t('stats.projectsFinished')} delay={0.2} />
+          <StatsCounter value="33+" label={t('stats.yearsExperience')} delay={0.4} />
+          <StatsCounter value="1120+" label={t('stats.revenue')} delay={0.6} />
+          <StatsCounter value="1520+" label={t('stats.colleagues')} delay={0.8} />
         </div>
       </div>
     </section>

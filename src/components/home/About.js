@@ -1,8 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useTranslation } from 'react-i18next';
+import { useLanguageUpdate } from '../../hooks/useLanguageUpdate';
 
 const About = () => {
+  const { t } = useTranslation();
+  const updateKey = useLanguageUpdate(); // Force re-render on language change
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -14,11 +18,11 @@ const About = () => {
   });
 
   const checklistItems = [
-    'Sustainability',
-    'Project On Time',
-    'Latest Designs',
-    'Quality Materials',
-    'Expert Workforce'
+    t('about.sustainabilityItem'),
+    t('about.onTimeItem'),
+    t('about.latestDesignsItem'),
+    t('about.qualityMaterialsItem'),
+    t('about.expertWorkforceItem')
   ];
 
   return (
@@ -32,15 +36,13 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="order-2 lg:order-1"
           >
-            <span className="text-lg sm:text-xl text-primary font-semibold mb-2 block">Sustainability</span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 sm:mb-8 leading-tight">Committed To Keep People Healthy & Safe</h2>
+            <span className="text-lg sm:text-xl text-primary font-semibold mb-2 block">{t('about.sustainability')}</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 sm:mb-8 leading-tight">{t('about.title')}</h2>
             <p className="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 leading-relaxed">
-              At Hoxha Engineering, we prioritize sustainability and safety in every project we undertake. 
-              Our commitment to environmentally responsible construction practices ensures that our buildings 
-              not only stand the test of time but also contribute positively to the communities they serve.
+              {t('about.description')}
             </p>
             <div className="mt-6 sm:mt-8">
-              <a href="#contact" className="btn bg-white text-secondary hover:bg-gray-100 w-full sm:w-auto">Get In Touch</a>
+              <a href="#contact" className="btn bg-white text-secondary hover:bg-gray-100 w-full sm:w-auto">{t('about.getInTouch')}</a>
             </div>
           </motion.div>
 
@@ -51,10 +53,9 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="bg-white text-dark p-6 sm:p-8 md:p-12 rounded-lg shadow-xl order-1 lg:order-2"
           >
-            <h3 className="text-2xl sm:text-3xl font-bold text-primary mb-6 sm:mb-8">We Follow Best Practices</h3>
+            <h3 className="text-2xl sm:text-3xl font-bold text-primary mb-6 sm:mb-8">{t('about.bestPractices')}</h3>
             <p className="text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed">
-              Our construction methodologies adhere to the highest industry standards, 
-              ensuring exceptional quality and durability in every project we complete.
+              {t('about.practicesDescription')}
             </p>
             
             <ul className="space-y-3 sm:space-y-4">

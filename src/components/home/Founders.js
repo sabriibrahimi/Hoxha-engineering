@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const FounderCard = ({ name, title, image }) => {
   return (
@@ -19,19 +20,19 @@ const FounderCard = ({ name, title, image }) => {
 };
 
 const Founders = () => {
+  const { t } = useTranslation();
   const founders = [
-    { name: 'Selman Ajdini', title: 'Founder', image: 'founder.png' },
-    { name: 'Sevdail Ajdini', title: 'CEO', image: 'ceo.png' },
+    { name: 'Selman Ajdini', title: t('founders.founder'), image: 'founder.png' },
+    { name: 'Sevdail Ajdini', title: t('founders.ceo'), image: 'ceo.png' },
   ];
 
   return (
     <section className="section bg-accent">
       <div className="container">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">About Founders</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">{t('founders.title')}</h2>
           <p className="text-lg md:text-xl max-w-3xl mx-auto mb-8">
-            We are a leading local company in North Macedonia with a rich history of excellence in construction 
-            and engineering. Our leadership team brings decades of experience and a passion for innovation.
+            {t('founders.description')}
           </p>
         </div>
 

@@ -1,11 +1,36 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import LanguageSwitcher from '../common/LanguageSwitcher';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const location = useLocation();
+    const { t, i18n } = useTranslation();
+    const navigate = useNavigate();
+
+    // Generate SEO-friendly URLs with language prefix
+    const getLocalizedPath = (path) => {
+        const currentLang = i18n.language || 'sq';
+        return currentLang === 'sq' ? path : `/${currentLang}${path}`;
+    };
+
+    // Change language without full reload and keep current route, applying lang prefix
+    const switchLanguage = async (lang) => {
+        try {
+            localStorage.setItem('i18nextLng', lang);
+            await i18n.changeLanguage(lang);
+
+            // Compute current logical path without existing lang prefix
+            const pathname = location.pathname || '/';
+            const stripped = pathname.replace(/^\/(sq|mk|en)(?=\/|$)/, '');
+            const normalized = stripped === '' ? '/' : stripped;
+            const newPath = lang === 'sq' ? normalized : `/${lang}${normalized}`;
+            navigate(newPath + window.location.search + window.location.hash, { replace: false });
+        } catch (e) {
+            console.error('Failed to switch language:', e);
+        }
+    };
 
     // Close mobile menu on route change
     useEffect(() => {
@@ -83,23 +108,69 @@ const Header = () => {
                 {/* Desktop nav */}
                 <nav className="hidden md:flex items-center gap-8">
                     {[
-                        { to: '/', label: 'Home' },
-                        { to: '/services', label: 'Services' },
-                        { to: '/projects', label: 'Projects' },
-                        { to: '/about', label: 'About' },
-                        { to: '/contact', label: 'Contact' },
+                        { to: '/', labelKey: 'navigation.home' },
+                        { to: '/services', labelKey: 'navigation.services' },
+                        { to: '/projects', labelKey: 'navigation.projects' },
+                        { to: '/about', labelKey: 'navigation.about' },
+                        { to: '/contact', labelKey: 'navigation.contact' },
                     ].map((item) => (
                         <Link
                             key={item.to}
-                            to={item.to}
+                            to={getLocalizedPath(item.to)}
                             className={`font-medium transition-colors hover:text-primary ${
                                 isScrolled ? 'text-gray-700' : 'md:text-white text-gray-700'
                             }`}
                         >
-                            {item.label}
+                            {t(item.labelKey)}
                         </Link>
                     ))}
                 </nav>
+
+                {/* Desktop Language Switcher */}
+                <div className="hidden md:flex items-center space-x-2 ml-6">
+                    <button
+                        onClick={() => switchLanguage('sq')}
+                        className={`px-3 py-1.5 rounded-lg font-semibold text-sm transition-all duration-300 hover:scale-105 ${
+                            i18n.language === 'sq'
+                                ? (isScrolled
+                                    ? 'bg-primary text-white shadow-md hover:bg-primary-dark'
+                                    : 'bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 border border-white/30')
+                                : (isScrolled
+                                    ? 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200'
+                                    : 'bg-white/10 backdrop-blur-sm text-white/80 hover:bg-white/20 border border-white/20')
+                        }`}
+                    >
+                        AL
+                    </button>
+                    <button
+                        onClick={() => switchLanguage('mk')}
+                        className={`px-3 py-1.5 rounded-lg font-semibold text-sm transition-all duration-300 hover:scale-105 ${
+                            i18n.language === 'mk'
+                                ? (isScrolled
+                                    ? 'bg-primary text-white shadow-md hover:bg-primary-dark'
+                                    : 'bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 border border-white/30')
+                                : (isScrolled
+                                    ? 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200'
+                                    : 'bg-white/10 backdrop-blur-sm text-white/80 hover:bg-white/20 border border-white/20')
+                        }`}
+                    >
+                        MK
+                    </button>
+                    <button
+                        onClick={() => switchLanguage('en')}
+                        className={`px-3 py-1.5 rounded-lg font-semibold text-sm transition-all duration-300 hover:scale-105 ${
+                            i18n.language === 'en'
+                                ? (isScrolled
+                                    ? 'bg-primary text-white shadow-md hover:bg-primary-dark'
+                                    : 'bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 border border-white/30')
+                                : (isScrolled
+                                    ? 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200'
+                                    : 'bg-white/10 backdrop-blur-sm text-white/80 hover:bg-white/20 border border-white/20')
+                        }`}
+                    >
+                        EN
+                    </button>
+                </div>
 
                 {/* Mobile menu button - Simple and Working */}
                 <button
@@ -137,61 +208,61 @@ const Header = () => {
                         onClick={() => setIsMobileMenuOpen(false)}
                     />
 
-          {/* Compact Glass Morphism Menu */}
-          <div className="md:hidden fixed top-14 left-3 right-3 bg-white/10 backdrop-blur-2xl shadow-2xl rounded-2xl border border-white/20 z-50 animate-slideDown">
-            <div className="p-4">
-              {/* Compact Header */}
-              <div className="flex justify-between items-center mb-6">
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary-dark rounded-xl flex items-center justify-center shadow-lg">
-                    <span className="text-white font-bold text-lg">H</span>
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">Hoxha Engineering</h3>
-                    <p className="text-xs text-gray-600 font-medium">Building Excellence</p>
-                  </div>
-                </div>
-                <button
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="p-2 hover:bg-white/20 rounded-xl transition-all duration-300 hover:scale-110 backdrop-blur-sm"
-                >
-                  <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
+                    {/* Compact Glass Morphism Menu */}
+                    <div className="md:hidden fixed top-14 left-3 right-3 bg-white/10 backdrop-blur-2xl shadow-2xl rounded-2xl border border-white/20 z-50 animate-slideDown">
+                        <div className="p-4">
+                            {/* Compact Header */}
+                            <div className="flex justify-between items-center mb-6">
+                                <div className="flex items-center space-x-3">
+                                    <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary-dark rounded-xl flex items-center justify-center shadow-lg">
+                                        <span className="text-white font-bold text-lg">H</span>
+                                    </div>
+                                    <div>
+                                        <h3 className="text-lg font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">Hoxha Engineering</h3>
+                                        <p className="text-xs text-gray-600 font-medium">Building Excellence</p>
+                                    </div>
+                                </div>
+                                <button
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className="p-2 hover:bg-white/20 rounded-xl transition-all duration-300 hover:scale-110 backdrop-blur-sm"
+                                >
+                                    <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
                             </div>
 
-              {/* Compact Navigation */}
-              <nav className="space-y-2">
+                            {/* Compact Navigation */}
+                            <nav className="space-y-2">
                                 {[
-                                    { to: '/', label: 'Home', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
-                                    { to: '/projects', label: 'Projects', icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4' },
-                                    { to: '/services', label: 'Services', icon: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.756-.426-3.31-2.37-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z' },
-                                    { to: '/about', label: 'About', icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z' },
-                                    { to: '/contact', label: 'Contact', icon: 'M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' },
+                                    { to: '/', labelKey: 'navigation.home', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
+                                    { to: '/projects', labelKey: 'navigation.projects', icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4' },
+                                    { to: '/services', labelKey: 'navigation.services', icon: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.756-.426-3.31-2.37-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z' },
+                                    { to: '/about', labelKey: 'navigation.about', icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z' },
+                                    { to: '/contact', labelKey: 'navigation.contact', icon: 'M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' },
                                 ].map((item, index) => (
                                     <Link
                                         key={item.to}
-                                        to={item.to}
+                                        to={getLocalizedPath(item.to)}
                                         onClick={() => setIsMobileMenuOpen(false)}
-                    className={`group flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-500 hover:scale-105 ${
-                      location.pathname === item.to
-                        ? 'bg-gradient-to-r from-primary to-primary-dark text-white shadow-xl transform scale-105'
-                        : 'bg-white/20 backdrop-blur-sm text-gray-700 hover:bg-white/30 hover:shadow-lg border border-white/30'
-                    }`}
+                                        className={`group flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-500 hover:scale-105 ${
+                                            location.pathname === item.to
+                                                ? 'bg-gradient-to-r from-primary to-primary-dark text-white shadow-xl transform scale-105'
+                                                : 'bg-white/20 backdrop-blur-sm text-gray-700 hover:bg-white/30 hover:shadow-lg border border-white/30'
+                                        }`}
                                         style={{
                                             animationDelay: `${index * 100}ms`,
                                             animation: 'slideInLeft 0.6s ease-out forwards'
                                         }}
                                     >
-                    <div className={`p-1.5 rounded-lg transition-all duration-300 ${
-                      location.pathname === item.to ? 'bg-white/20' : 'bg-white/40 group-hover:bg-white/60'
-                    }`}>
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
-                      </svg>
-                    </div>
-                    <span className="font-semibold text-base">{item.label}</span>
+                                        <div className={`p-1.5 rounded-lg transition-all duration-300 ${
+                                            location.pathname === item.to ? 'bg-white/20' : 'bg-white/40 group-hover:bg-white/60'
+                                        }`}>
+                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
+                                            </svg>
+                                        </div>
+                                        <span className="font-semibold text-base">{t(item.labelKey)}</span>
                                         {location.pathname === item.to && (
                                             <div className="ml-auto">
                                                 <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
@@ -201,27 +272,48 @@ const Header = () => {
                                 ))}
                             </nav>
 
-              {/* Compact Language Switcher */}
-              <div className="mt-6 pt-4 border-t border-white/20">
-                <div className="flex justify-center space-x-2">
-                  <button className="px-4 py-2 bg-gradient-to-r from-primary to-primary-dark text-white rounded-xl font-bold text-xs hover:scale-110 transition-all duration-300 shadow-lg">
-                    AL
-                  </button>
-                  <button className="px-4 py-2 bg-white/20 backdrop-blur-sm text-gray-700 rounded-xl font-bold text-xs hover:bg-white/30 hover:scale-110 transition-all duration-300 border border-white/30">
-                    MK
-                  </button>
-                  <button className="px-4 py-2 bg-white/20 backdrop-blur-sm text-gray-700 rounded-xl font-bold text-xs hover:bg-white/30 hover:scale-110 transition-all duration-300 border border-white/30">
-                    EN
-                  </button>
-                </div>
-              </div>
+                            {/* Compact Language Switcher */}
+                            <div className="mt-6 pt-4 border-t border-white/20">
+                                <div className="flex justify-center space-x-2">
+                                    <button
+                                        onClick={() => switchLanguage('sq')}
+                                        className={`px-4 py-2 rounded-xl font-bold text-xs hover:scale-110 transition-all duration-300 ${
+                                            i18n.language === 'sq'
+                                                ? 'bg-gradient-to-r from-primary to-primary-dark text-white shadow-lg'
+                                                : 'bg-white/20 backdrop-blur-sm text-gray-700 hover:bg-white/30 border border-white/30'
+                                        }`}
+                                    >
+                                        AL
+                                    </button>
+                                    <button
+                                        onClick={() => switchLanguage('mk')}
+                                        className={`px-4 py-2 rounded-xl font-bold text-xs hover:scale-110 transition-all duration-300 ${
+                                            i18n.language === 'mk'
+                                                ? 'bg-gradient-to-r from-primary to-primary-dark text-white shadow-lg'
+                                                : 'bg-white/20 backdrop-blur-sm text-gray-700 hover:bg-white/30 border border-white/30'
+                                        }`}
+                                    >
+                                        MK
+                                    </button>
+                                    <button
+                                        onClick={() => switchLanguage('en')}
+                                        className={`px-4 py-2 rounded-xl font-bold text-xs hover:scale-110 transition-all duration-300 ${
+                                            i18n.language === 'en'
+                                                ? 'bg-gradient-to-r from-primary to-primary-dark text-white shadow-lg'
+                                                : 'bg-white/20 backdrop-blur-sm text-gray-700 hover:bg-white/30 border border-white/30'
+                                        }`}
+                                    >
+                                        EN
+                                    </button>
+                                </div>
+                            </div>
 
-              {/* Compact Footer */}
-              <div className="mt-4 pt-3 border-t border-white/20">
-                <div className="text-center">
-                  <p className="text-xs text-gray-600 font-medium">© 2024 Hoxha Engineering</p>
-                </div>
-              </div>
+                            {/* Compact Footer */}
+                            <div className="mt-4 pt-3 border-t border-white/20">
+                                <div className="text-center">
+                                    <p className="text-xs text-gray-600 font-medium">© 2024 Hoxha Engineering</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </>
