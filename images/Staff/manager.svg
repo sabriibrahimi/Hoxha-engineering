@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1d292f"/>
+      <stop offset="1" stop-color="#0b1216"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#bg)"/>
+  <path d="M0 185H800M0 760H800M170 0V1000M630 0V1000" stroke="#fff" stroke-opacity=".05"/>
+  <path d="M85 805L715 195M85 915L715 305" stroke="#8b2734" stroke-opacity=".28"/>
+  <circle cx="400" cy="365" r="142" fill="#d2c8bc"/>
+  <path d="M215 1000V805c0-144 82-255 185-255s185 111 185 255v195" fill="#727b80"/>
+  <path d="M257 320c18-123 72-184 143-184s125 61 143 184c-45-30-93-45-143-45s-98 15-143 45z" fill="#111a20"/>
+  <path d="M290 1000V740l110 92 110-92v260" fill="#19242b"/>
+  <path d="M400 832l-44 168h88z" fill="#b79a72"/>
+  <text x="54" y="74" fill="#fff" fill-opacity=".5" font-family="Arial" font-size="18" letter-spacing="5">HOXHA ENGINEERING</text>
+  <text x="54" y="946" fill="#fff" fill-opacity=".45" font-family="Arial" font-size="15" letter-spacing="4">PROFESSIONAL PROFILE</text>
+</svg>

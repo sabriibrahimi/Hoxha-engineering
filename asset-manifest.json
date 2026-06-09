@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Hoxha-engineering/static/css/main.ab8584f4.css",
-    "main.js": "/Hoxha-engineering/static/js/main.6456f2a2.js",
+    "main.css": "/Hoxha-engineering/static/css/main.a63de94a.css",
+    "main.js": "/Hoxha-engineering/static/js/main.9b35462b.js",
     "static/js/453.69844f77.chunk.js": "/Hoxha-engineering/static/js/453.69844f77.chunk.js",
     "index.html": "/Hoxha-engineering/index.html",
-    "main.ab8584f4.css.map": "/Hoxha-engineering/static/css/main.ab8584f4.css.map",
-    "main.6456f2a2.js.map": "/Hoxha-engineering/static/js/main.6456f2a2.js.map",
+    "main.a63de94a.css.map": "/Hoxha-engineering/static/css/main.a63de94a.css.map",
+    "main.9b35462b.js.map": "/Hoxha-engineering/static/js/main.9b35462b.js.map",
     "453.69844f77.chunk.js.map": "/Hoxha-engineering/static/js/453.69844f77.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ab8584f4.css",
-    "static/js/main.6456f2a2.js"
+    "static/css/main.a63de94a.css",
+    "static/js/main.9b35462b.js"
   ]
 }
