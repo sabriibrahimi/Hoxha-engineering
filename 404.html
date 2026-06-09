@@ -4,22 +4,9 @@
     <meta charset="utf-8" />
     <title>Hoxha Engineering</title>
     <script>
-      var pathSegmentsToKeep = 1;
-      var locationParts = window.location;
-      var redirectPath = locationParts.pathname
-        .split('/')
-        .slice(1 + pathSegmentsToKeep)
-        .join('/')
-        .replace(/&/g, '~and~');
-
-      window.location.replace(
-        locationParts.protocol + '//' + locationParts.hostname +
-        (locationParts.port ? ':' + locationParts.port : '') +
-        locationParts.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') +
-        '/?/' + redirectPath +
-        (locationParts.search ? '&' + locationParts.search.slice(1).replace(/&/g, '~and~') : '') +
-        locationParts.hash
-      );
+      var basePath = '/Hoxha-engineering/';
+      var route = window.location.pathname.replace(/^\/Hoxha-engineering\/?/, '');
+      window.location.replace(basePath + '#/' + route + window.location.search + window.location.hash);
     </script>
   </head>
   <body></body>
