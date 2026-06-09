@@ -35,7 +35,7 @@ i18n
         load: 'languageOnly',
         cleanCode: true,
         nonExplicitSupportedLngs: true,
-        debug: true // Set to true for debugging
+        debug: false
     })
     .then(() => {
         console.log('✅ i18n initialized successfully');

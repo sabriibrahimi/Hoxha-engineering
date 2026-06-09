@@ -1,325 +1,198 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { asset } from '../../utils/assets';
 
 const Header = () => {
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const location = useLocation();
-    const { t, i18n } = useTranslation();
-    const navigate = useNavigate();
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
+  const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
 
-    // Generate SEO-friendly URLs with language prefix
-    const getLocalizedPath = (path) => {
-        const currentLang = i18n.language || 'sq';
-        return currentLang === 'sq' ? path : `/${currentLang}${path}`;
-    };
+  const isHome = location.pathname === '/' || /^\/(sq|mk|en)\/?$/.test(location.pathname);
+  const transparent = isHome && !scrolled;
 
-    // Change language without full reload and keep current route, applying lang prefix
-    const switchLanguage = async (lang) => {
-        try {
-            localStorage.setItem('i18nextLng', lang);
-            await i18n.changeLanguage(lang);
+  const getLocalizedPath = (path) => {
+    const lang = i18n.language || 'sq';
+    return lang === 'sq' ? path : `/${lang}${path}`;
+  };
 
-            // Compute current logical path without existing lang prefix
-            const pathname = location.pathname || '/';
-            const stripped = pathname.replace(/^\/(sq|mk|en)(?=\/|$)/, '');
-            const normalized = stripped === '' ? '/' : stripped;
-            const newPath = lang === 'sq' ? normalized : `/${lang}${normalized}`;
-            navigate(newPath + window.location.search + window.location.hash, { replace: false });
-        } catch (e) {
-            console.error('Failed to switch language:', e);
-        }
-    };
+  const switchLanguage = async (lang) => {
+    localStorage.setItem('i18nextLng', lang);
+    await i18n.changeLanguage(lang);
+    const stripped = (location.pathname || '/').replace(/^\/(sq|mk|en)(?=\/|$)/, '') || '/';
+    const normalized = stripped === '' ? '/' : stripped;
+    navigate((lang === 'sq' ? normalized : `/${lang}${normalized}`) + location.search, { replace: false });
+  };
 
-    // Close mobile menu on route change
-    useEffect(() => {
-        setIsMobileMenuOpen(false);
-    }, [location.pathname]);
+  const navItems = [
+    { to: '/', labelKey: 'navigation.home' },
+    { to: '/services', labelKey: 'navigation.services' },
+    { to: '/projects', labelKey: 'navigation.projects' },
+    { to: '/about', labelKey: 'navigation.about' },
+    { to: '/contact', labelKey: 'navigation.contact' },
+  ];
 
-    // Add scrolled style
-    useEffect(() => {
-        const onScroll = () => setIsScrolled(window.scrollY > 0);
-        onScroll();
-        window.addEventListener('scroll', onScroll);
-        return () => window.removeEventListener('scroll', onScroll);
-    }, []);
+  const isActive = (path) => {
+    const cur = location.pathname.replace(/^\/(sq|mk|en)/, '') || '/';
+    return path === '/' ? cur === '/' : cur === path || cur.startsWith(`${path}/`);
+  };
 
-    // Lock body scroll when mobile menu is open
-    useEffect(() => {
-        if (isMobileMenuOpen) {
-            const original = document.body.style.overflow;
-            document.body.style.overflow = 'hidden';
-            document.documentElement.classList.add('no-scroll');
-            document.body.classList.add('no-scroll');
-            return () => {
-                document.body.style.overflow = original;
-                document.documentElement.classList.remove('no-scroll');
-                document.body.classList.remove('no-scroll');
-            };
-        }
-    }, [isMobileMenuOpen]);
+  useEffect(() => { setMenuOpen(false); }, [location.pathname]);
+  useEffect(() => {
+    const fn = () => setScrolled(window.scrollY > 40);
+    fn();
+    window.addEventListener('scroll', fn, { passive: true });
+    return () => window.removeEventListener('scroll', fn);
+  }, []);
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [menuOpen]);
 
-    return (
-        <header
-            className={`fixed top-0 left-0 right-0 z-[1000] transition-all duration-300 border-b ${
-                isScrolled
-                    ? 'bg-white/90 backdrop-blur shadow border-gray-200'
-                    : 'md:bg-transparent md:shadow-none bg-white shadow border-gray-200'
-            }`}
-        >
-            {/* Overlay gradient on desktop only to avoid bleed, hidden on mobile */}
-            {!isScrolled && (
-                <div className="pointer-events-none absolute inset-0 hidden md:block bg-gradient-to-b from-black/40 to-transparent" />
-            )}
+  const navLink = (active) => {
+    if (transparent) return active ? 'text-white' : 'text-white/60 hover:text-white';
+    return active ? 'text-primary' : 'text-muted hover:text-secondary';
+  };
 
-            {/* Top bar */}
-            <div className="relative container h-14 md:h-20 flex items-center justify-between px-4">
-                {/* Logo */}
-                <Link to="/" className="mr-auto flex items-center gap-2 ml-8">
-           <span
-               className={`transition-colors ${
-                   isScrolled ? 'text-primary' : 'md:text-white text-primary'
-               }`}
-               aria-hidden
-           >
-            <img src="/Hoxha-engineering/images/removed.png" alt="Logo" className="w-12 h-12 md:w-14 md:h-14" />
-          </span>
-                    <span className="leading-tight ml-6">
-            <span
-                className={`block text-lg md:text-xl lg:text-2xl font-bold transition-colors tracking-tight ${
-                    isScrolled ? 'text-primary' : 'md:text-white text-primary'
-                }`}
-                style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.3)', fontFamily: 'Arial, sans-serif' }}
-            >
-              HOXHA
-            </span>
-            <span
-                className={`block text-sm md:text-base lg:text-lg tracking-wider font-semibold transition-colors ${
-                    isScrolled ? 'text-secondary' : 'md:text-white/95 text-secondary'
-                }`}
-                style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.3)', fontFamily: 'Arial, sans-serif' }}
-            >
-              ENGINEERING
-            </span>
-          </span>
-                </Link>
+  return (
+    <>
+      <header
+        className={`fixed top-0 inset-x-0 z-[1000] transition-all duration-500 ${
+          transparent
+            ? 'bg-transparent'
+            : 'bg-white/95 backdrop-blur-xl border-b border-line shadow-[0_1px_0_rgba(0,0,0,0.04)]'
+        }`}
+      >
+        <div className="container-premium h-[76px] flex items-center justify-between gap-6">
+          <Link to={getLocalizedPath('/')} className="flex items-center gap-3 flex-shrink-0 group">
+            <div className={`p-1.5 border transition-colors ${transparent ? 'border-white/20 group-hover:border-white/40' : 'border-line group-hover:border-primary/30'}`}>
+              <img src={asset('/images/removed.png')} alt="" className="w-8 h-8" />
+            </div>
+            <div className="hidden sm:block leading-none">
+              <span className={`block text-sm lg:text-base font-heading font-bold tracking-tight ${transparent ? 'text-white' : 'text-secondary'}`}>HOXHA</span>
+              <span className={`block text-[9px] lg:text-[10px] tracking-[0.25em] font-medium mt-1 ${transparent ? 'text-white/50' : 'text-muted'}`}>ENGINEERING</span>
+            </div>
+          </Link>
 
-                {/* Desktop nav */}
-                <nav className="hidden md:flex items-center gap-8">
-                    {[
-                        { to: '/', labelKey: 'navigation.home' },
-                        { to: '/services', labelKey: 'navigation.services' },
-                        { to: '/projects', labelKey: 'navigation.projects' },
-                        { to: '/about', labelKey: 'navigation.about' },
-                        { to: '/contact', labelKey: 'navigation.contact' },
-                    ].map((item) => (
-                        <Link
-                            key={item.to}
-                            to={getLocalizedPath(item.to)}
-                            className={`font-medium transition-colors hover:text-primary ${
-                                isScrolled ? 'text-gray-700' : 'md:text-white text-gray-700'
-                            }`}
-                        >
-                            {t(item.labelKey)}
-                        </Link>
-                    ))}
-                </nav>
+          <nav className="hidden xl:flex items-center gap-9">
+            {navItems.map((item) => (
+              <Link
+                key={item.to}
+                to={getLocalizedPath(item.to)}
+                className={`relative text-[11px] font-semibold uppercase tracking-[0.16em] transition-colors py-1 ${navLink(isActive(item.to))}`}
+              >
+                {t(item.labelKey)}
+                {isActive(item.to) && (
+                  <motion.span layoutId="nav-indicator" className={`absolute -bottom-1 left-0 right-0 h-px ${transparent ? 'bg-bronze' : 'bg-primary'}`} />
+                )}
+              </Link>
+            ))}
+          </nav>
 
-                {/* Desktop Language Switcher */}
-                <div className="hidden md:flex items-center space-x-2 ml-6">
-                    <button
-                        onClick={() => switchLanguage('sq')}
-                        className={`px-3 py-1.5 rounded-lg font-semibold text-sm transition-all duration-300 hover:scale-105 ${
-                            i18n.language === 'sq'
-                                ? (isScrolled
-                                    ? 'bg-primary text-white shadow-md hover:bg-primary-dark'
-                                    : 'bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 border border-white/30')
-                                : (isScrolled
-                                    ? 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200'
-                                    : 'bg-white/10 backdrop-blur-sm text-white/80 hover:bg-white/20 border border-white/20')
-                        }`}
-                    >
-                        AL
-                    </button>
-                    <button
-                        onClick={() => switchLanguage('mk')}
-                        className={`px-3 py-1.5 rounded-lg font-semibold text-sm transition-all duration-300 hover:scale-105 ${
-                            i18n.language === 'mk'
-                                ? (isScrolled
-                                    ? 'bg-primary text-white shadow-md hover:bg-primary-dark'
-                                    : 'bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 border border-white/30')
-                                : (isScrolled
-                                    ? 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200'
-                                    : 'bg-white/10 backdrop-blur-sm text-white/80 hover:bg-white/20 border border-white/20')
-                        }`}
-                    >
-                        MK
-                    </button>
-                    <button
-                        onClick={() => switchLanguage('en')}
-                        className={`px-3 py-1.5 rounded-lg font-semibold text-sm transition-all duration-300 hover:scale-105 ${
-                            i18n.language === 'en'
-                                ? (isScrolled
-                                    ? 'bg-primary text-white shadow-md hover:bg-primary-dark'
-                                    : 'bg-white/20 backdrop-blur-sm text-white hover:bg-white/30 border border-white/30')
-                                : (isScrolled
-                                    ? 'bg-gray-100 text-gray-700 hover:bg-gray-200 border border-gray-200'
-                                    : 'bg-white/10 backdrop-blur-sm text-white/80 hover:bg-white/20 border border-white/20')
-                        }`}
-                    >
-                        EN
-                    </button>
-                </div>
-
-                {/* Mobile menu button - Simple and Working */}
+          <div className="hidden xl:flex items-center gap-6">
+            <div className="flex items-center gap-1">
+              {['sq', 'mk', 'en'].map((lang) => (
                 <button
-                    onClick={() => {
-                        console.log('Mobile menu button clicked, current state:', isMobileMenuOpen);
-                        setIsMobileMenuOpen((v) => !v);
-                    }}
-                    className={`md:hidden ml-3 p-2 rounded-lg transition-colors ${
-                        isMobileMenuOpen
-                            ? 'bg-primary text-white'
-                            : isScrolled
-                                ? 'text-gray-700 bg-white border border-gray-200 hover:bg-gray-100'
-                                : 'text-white bg-white/20 border border-white/30 hover:bg-white/30'
-                    }`}
-                    aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-                    aria-expanded={isMobileMenuOpen}
-                    aria-controls="mobile-menu"
+                  key={lang}
+                  type="button"
+                  onClick={() => switchLanguage(lang)}
+                  className={`w-8 h-8 text-[11px] font-bold tracking-wide transition-colors ${
+                    i18n.language === lang
+                      ? transparent ? 'text-white bg-white/10' : 'text-primary bg-primary/5'
+                      : transparent ? 'text-white/40 hover:text-white/70' : 'text-muted hover:text-secondary'
+                  }`}
                 >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        {isMobileMenuOpen ? (
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                        ) : (
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                        )}
-                    </svg>
+                  {lang === 'sq' ? 'AL' : lang.toUpperCase()}
                 </button>
+              ))}
+            </div>
+            <Link
+              to={getLocalizedPath('/contact')}
+              className={`btn text-[13px] uppercase tracking-[0.1em] px-6 py-3 ${
+                transparent ? 'bg-white text-secondary hover:bg-white/90' : 'btn-primary'
+              }`}
+            >
+              {t('hero.contactBtn')}
+            </Link>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => setMenuOpen(true)}
+            className={`xl:hidden p-2 transition-colors ${transparent ? 'text-white' : 'text-secondary'}`}
+            aria-label="Menu"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeWidth={1.5} d="M4 7h16M4 12h16M4 17h16" />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            className="fixed inset-0 z-[1100] bg-secondary xl:hidden flex flex-col"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <div className="container-premium h-[72px] flex items-center justify-between border-b border-white/10">
+              <Link to={getLocalizedPath('/')} onClick={() => setMenuOpen(false)} className="flex items-center gap-3">
+                <img src={asset('/images/removed.png')} alt="" className="w-8 h-8" />
+                <span className="text-sm font-heading font-bold text-white tracking-tight">HOXHA ENGINEERING</span>
+              </Link>
+              <button type="button" onClick={() => setMenuOpen(false)} className="text-white/60 hover:text-white p-2" aria-label="Close">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
             </div>
 
-            {/* Mobile Menu - Beautiful Professional Design */}
-            {isMobileMenuOpen && (
-                <>
-                    {/* Backdrop with smooth fade */}
-                    <div
-                        className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40 animate-fadeIn"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                    />
+            <nav className="flex-1 container-premium py-8 overflow-y-auto">
+              {navItems.map((item, i) => (
+                <motion.div key={item.to} initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.06 }}>
+                  <Link
+                    to={getLocalizedPath(item.to)}
+                    onClick={() => setMenuOpen(false)}
+                    className={`block py-5 border-b border-white/10 text-2xl font-heading font-bold tracking-tight transition-colors ${
+                      isActive(item.to) ? 'text-bronze' : 'text-white/80 hover:text-white'
+                    }`}
+                  >
+                    {t(item.labelKey)}
+                  </Link>
+                </motion.div>
+              ))}
 
-                    {/* Compact Glass Morphism Menu */}
-                    <div className="md:hidden fixed top-14 left-3 right-3 bg-white/10 backdrop-blur-2xl shadow-2xl rounded-2xl border border-white/20 z-50 animate-slideDown">
-                        <div className="p-4">
-                            {/* Compact Header */}
-                            <div className="flex justify-between items-center mb-6">
-                                <div className="flex items-center space-x-3">
-                                    <div className="w-10 h-10 bg-gradient-to-br from-primary to-primary-dark rounded-xl flex items-center justify-center shadow-lg">
-                                        <span className="text-white font-bold text-lg">H</span>
-                                    </div>
-                                    <div>
-                                        <h3 className="text-lg font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">Hoxha Engineering</h3>
-                                        <p className="text-xs text-gray-600 font-medium">Building Excellence</p>
-                                    </div>
-                                </div>
-                                <button
-                                    onClick={() => setIsMobileMenuOpen(false)}
-                                    className="p-2 hover:bg-white/20 rounded-xl transition-all duration-300 hover:scale-110 backdrop-blur-sm"
-                                >
-                                    <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
-                                </button>
-                            </div>
+              <div className="mt-10 flex gap-3">
+                {['sq', 'mk', 'en'].map((lang) => (
+                  <button
+                    key={lang}
+                    type="button"
+                    onClick={() => switchLanguage(lang)}
+                    className={`flex-1 py-3 text-sm font-bold tracking-widest border transition-colors ${
+                      i18n.language === lang ? 'bg-primary border-primary text-white' : 'border-white/20 text-white/60'
+                    }`}
+                  >
+                    {lang === 'sq' ? 'AL' : lang.toUpperCase()}
+                  </button>
+                ))}
+              </div>
+            </nav>
 
-                            {/* Compact Navigation */}
-                            <nav className="space-y-2">
-                                {[
-                                    { to: '/', labelKey: 'navigation.home', icon: 'M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6' },
-                                    { to: '/projects', labelKey: 'navigation.projects', icon: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4' },
-                                    { to: '/services', labelKey: 'navigation.services', icon: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.756-.426-3.31-2.37-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z' },
-                                    { to: '/about', labelKey: 'navigation.about', icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z' },
-                                    { to: '/contact', labelKey: 'navigation.contact', icon: 'M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' },
-                                ].map((item, index) => (
-                                    <Link
-                                        key={item.to}
-                                        to={getLocalizedPath(item.to)}
-                                        onClick={() => setIsMobileMenuOpen(false)}
-                                        className={`group flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-500 hover:scale-105 ${
-                                            location.pathname === item.to
-                                                ? 'bg-gradient-to-r from-primary to-primary-dark text-white shadow-xl transform scale-105'
-                                                : 'bg-white/20 backdrop-blur-sm text-gray-700 hover:bg-white/30 hover:shadow-lg border border-white/30'
-                                        }`}
-                                        style={{
-                                            animationDelay: `${index * 100}ms`,
-                                            animation: 'slideInLeft 0.6s ease-out forwards'
-                                        }}
-                                    >
-                                        <div className={`p-1.5 rounded-lg transition-all duration-300 ${
-                                            location.pathname === item.to ? 'bg-white/20' : 'bg-white/40 group-hover:bg-white/60'
-                                        }`}>
-                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={item.icon} />
-                                            </svg>
-                                        </div>
-                                        <span className="font-semibold text-base">{t(item.labelKey)}</span>
-                                        {location.pathname === item.to && (
-                                            <div className="ml-auto">
-                                                <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
-                                            </div>
-                                        )}
-                                    </Link>
-                                ))}
-                            </nav>
-
-                            {/* Compact Language Switcher */}
-                            <div className="mt-6 pt-4 border-t border-white/20">
-                                <div className="flex justify-center space-x-2">
-                                    <button
-                                        onClick={() => switchLanguage('sq')}
-                                        className={`px-4 py-2 rounded-xl font-bold text-xs hover:scale-110 transition-all duration-300 ${
-                                            i18n.language === 'sq'
-                                                ? 'bg-gradient-to-r from-primary to-primary-dark text-white shadow-lg'
-                                                : 'bg-white/20 backdrop-blur-sm text-gray-700 hover:bg-white/30 border border-white/30'
-                                        }`}
-                                    >
-                                        AL
-                                    </button>
-                                    <button
-                                        onClick={() => switchLanguage('mk')}
-                                        className={`px-4 py-2 rounded-xl font-bold text-xs hover:scale-110 transition-all duration-300 ${
-                                            i18n.language === 'mk'
-                                                ? 'bg-gradient-to-r from-primary to-primary-dark text-white shadow-lg'
-                                                : 'bg-white/20 backdrop-blur-sm text-gray-700 hover:bg-white/30 border border-white/30'
-                                        }`}
-                                    >
-                                        MK
-                                    </button>
-                                    <button
-                                        onClick={() => switchLanguage('en')}
-                                        className={`px-4 py-2 rounded-xl font-bold text-xs hover:scale-110 transition-all duration-300 ${
-                                            i18n.language === 'en'
-                                                ? 'bg-gradient-to-r from-primary to-primary-dark text-white shadow-lg'
-                                                : 'bg-white/20 backdrop-blur-sm text-gray-700 hover:bg-white/30 border border-white/30'
-                                        }`}
-                                    >
-                                        EN
-                                    </button>
-                                </div>
-                            </div>
-
-                            {/* Compact Footer */}
-                            <div className="mt-4 pt-3 border-t border-white/20">
-                                <div className="text-center">
-                                    <p className="text-xs text-gray-600 font-medium">© 2024 Hoxha Engineering</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </>
-            )}
-        </header>
-    );
+            <div className="container-premium py-6 border-t border-white/10 safe-bottom">
+              <Link to={getLocalizedPath('/contact')} onClick={() => setMenuOpen(false)} className="btn btn-primary w-full py-4">
+                {t('hero.contactBtn')}
+              </Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
 };
 
 export default Header;

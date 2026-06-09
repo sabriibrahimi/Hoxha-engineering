@@ -1,54 +1,49 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-
-const FounderCard = ({ name, title, image }) => {
-  return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-      <div className="relative h-64 overflow-hidden">
-        <img 
-          src={`/Hoxha-engineering/images/Founders/${image}`} 
-          alt={name} 
-          className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105"
-        />
-      </div>
-      <div className="p-6">
-        <h3 className="text-2xl font-bold text-primary mb-1">{name}</h3>
-        <p className="text-lg text-gray-600">{title}</p>
-      </div>
-    </div>
-  );
-};
+import Reveal from '../common/Reveal';
+import { asset } from '../../utils/assets';
 
 const Founders = () => {
   const { t } = useTranslation();
-  const founders = [
-    { name: 'Selman Ajdini', title: t('founders.founder'), image: 'founder.png' },
-    { name: 'Sevdail Ajdini', title: t('founders.ceo'), image: 'ceo.png' },
-  ];
 
   return (
-    <section className="section bg-accent">
-      <div className="container">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">{t('founders.title')}</h2>
-          <p className="text-lg md:text-xl max-w-3xl mx-auto mb-8">
-            {t('founders.description')}
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-          {founders.map((founder) => (
-            <FounderCard 
-              key={founder.name}
-              name={founder.name}
-              title={founder.title}
-              image={founder.image}
-            />
-          ))}
+    <section className="section-premium bg-secondary-dark text-white overflow-hidden">
+      <div className="container-premium">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+          <Reveal direction="left" className="lg:col-span-5">
+            <div className="grid grid-cols-2 gap-3 sm:gap-5">
+              <Leader image="founder.png" name="Selman Ajdini" role={t('founders.founder')} />
+              <Leader image="ceo.png" name="Sevdail Ajdini" role={t('founders.ceo')} offset />
+            </div>
+          </Reveal>
+          <Reveal direction="right" delay={0.1} className="lg:col-span-7 lg:pl-8">
+            <p className="label-premium-light">{t('aboutPage.leadership')}</p>
+            <blockquote className="text-2xl sm:text-3xl lg:text-4xl font-heading font-medium leading-tight text-white/90 max-w-3xl">
+              &ldquo;{t('founders.description')}&rdquo;
+            </blockquote>
+            <div className="w-full h-px bg-white/10 my-8" />
+            <div className="grid sm:grid-cols-3 gap-6">
+              {[['33+', t('stats.yearsExperience')], ['512+', t('stats.projectsFinished')], ['100%', t('aboutPage.clientSatisfaction')]].map(([v, l]) => (
+                <div key={l}><strong className="block text-2xl font-heading text-white">{v}</strong><span className="text-[10px] uppercase tracking-[0.18em] text-white/35">{l}</span></div>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>
   );
 };
+
+const Leader = ({ image, name, role, offset }) => (
+  <figure className={offset ? 'mt-10 sm:mt-16' : ''}>
+    <div className="aspect-[3/4] overflow-hidden bg-secondary-light">
+      <img src={asset(`/images/Founders/${image}`)} alt={name} className="w-full h-full object-cover object-top grayscale image-grade" loading="lazy" />
+    </div>
+    <figcaption className="pt-4 border-t border-white/15 mt-4">
+      <div className="text-sm font-heading font-semibold">{name}</div>
+      <div className="text-[9px] uppercase tracking-[0.2em] text-bronze mt-1">{role}</div>
+    </figcaption>
+  </figure>
+);
 
 export default Founders;

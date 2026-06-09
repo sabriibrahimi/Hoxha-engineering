@@ -29,7 +29,46 @@
     "individualBuildings": "Ndërtesa Individuale",
     "collectiveBuildings": "Ndërtesa Kolektive",
     "socialBuildings": "Ndërtesa Sociale",
-    "publicBuildings": "Ndërtesa Publike"
+    "publicBuildings": "Ndërtesa Publike",
+    "architecturalDesign": "Dizajn Arkitekturor",
+    "descriptions": {
+      "residential": "Ne projektojmë dhe ndërtojmë ndërtesa rezidenciale me cilësi të lartë që kombinojnë funksionalitetin me estetikën, duke krijuar hapësira të përsosura banimi për familjet.",
+      "individual": "Projektet tona individuale janë të personalizuara për nevojat specifike të klientit, me dizajne që reflektojnë stilin dhe kërkesat personale.",
+      "collective": "Ne specializohemi në komplekse rezidenciale kolektive që nxisin komunitetin duke ofruar hapësira moderne dhe komode për familje të shumta.",
+      "social": "Projektet tona sociale shërbejnë nevojat e komunitetit, duke krijuar hapësira të aksesueshme, funksionale dhe të përshtatshme për interaksion social.",
+      "public": "Ne realizojmë projekte infrastrukture publike që përmirësojnë mjedisin urban, me fokus në qëndrueshmëri, aksesueshmëri dhe shërbim publik.",
+      "architectural": "Shërbimet tona arkitekturore kombinojnë kreativitetin me ekspertizën teknike për dizajne inovative dhe funksionale që tejkalojnë pritjet e klientëve."
+    }
+  },
+  "trust": {
+    "established": "Themeluar",
+    "projects": "Projekte të Përfunduara",
+    "region": "Bazuar në",
+    "regionValue": "Maqedoninë e Veriut",
+    "experience": "Vite Përvojë"
+  },
+  "projects": {
+    "items": {
+      "residentialComplex": "Kompleks Rezidencial",
+      "individualHousing": "Projekt Banimi Individual",
+      "collectiveHousing": "Zhvillim Banimi Kolektiv",
+      "publicAdmin": "Ndërtesë Administrative Publike",
+      "socialHousing": "Projekt Banimi Social",
+      "commercialBuilding": "Ndërtesë Komerciale"
+    },
+    "locations": {
+      "kumanovo": "Kumanovë, Maqedonia e Veriut",
+      "skopje": "Shkup, Maqedonia e Veriut",
+      "tetovo": "Tetovë, Maqedonia e Veriut",
+      "gostivar": "Gostivar, Maqedonia e Veriut"
+    }
+  },
+  "cta": {
+    "discussTitle": "Le të Diskutojmë Projektin Tuaj",
+    "discussDescription": "Gati të filloni projektin tuaj të ndërtimit? Na kontaktoni sot për konsultim dhe lëreni ekipin tonë të ekspertëve t'ju sjellë vizionin në jetë.",
+    "readyToWork": "Gati të Punoni Me Ne?",
+    "readyToWorkDescription": "Kontaktoni ekipin tonë sot për të diskutuar projektin tuaj dhe për të përjetuar ndryshimin e Hoxha Engineering.",
+    "getQuote": "Kërko Ofertë"
   },
   "about": {
     "sustainability": "Qëndrueshmëria",
@@ -61,7 +100,14 @@
     "saturday": "E shtunë: 9:00 - 13:00",
     "sunday": "E diel: Mbyllur",
     "findUsOnMap": "Na Gjeni në Hartë",
-    "getFullInfo": "Merrni Informacionin e Plotë të Kontaktit"
+    "getFullInfo": "Merrni Informacionin e Plotë të Kontaktit",
+    "howToReach": "Si të Na Kontaktoni",
+    "intro": "Ekipi ynë është i disponueshëm për t'iu përgjigjur çdo pyetjeje rreth shërbimeve, projekteve ose nevojave tuaja të ndërtimit.",
+    "officeAddress": "Adresa e Zyrës",
+    "connectWithUs": "Lidhuni Me Ne",
+    "headOfficeTitle": "Zyra Kryesore - Kumanovë",
+    "sendMessageTitle": "Na Dërgoni një Mesazh",
+    "fullName": "Emri i Plotë"
   },
   "contactPage": {
     "getInTouch": "Na Kontaktoni",
@@ -80,7 +126,7 @@
     "quickLinks": "Lidhje të Shpejta",
     "contact": "Kontakti",
     "connectWithUs": "Lidhuni Me Ne",
-    "copyright": "© 2024 Hoxha Engineering. Të gjitha të drejtat e rezervuara."
+    "copyright": "© 2026 Hoxha Engineering. Të gjitha të drejtat e rezervuara."
   },
   "aboutPage": {
     "title": "Rreth Nesh",
@@ -92,7 +138,35 @@
     "ourValues": "Vlerat Tona",
     "valuesDescription": "Ne veprojmë me integritet, transparencë dhe përkushtim ndaj cilësisë në çdo projekt që ndërmarrim.",
     "team": "Ekipi Ynë",
-    "teamDescription": "Ekipi ynë përbëhet nga profesionistë të kualifikuar me vjet përvojë në industrinë e ndërtimit."
+    "teamDescription": "Ekipi ynë përbëhet nga profesionistë të kualifikuar me vjet përvojë në industrinë e ndërtimit.",
+    "journey": "Udhëtimi Ynë",
+    "storyP1": "Ne jemi një kompani lokale udhëheqëse në Maqedoninë e Veriut me mbi 33 vjet përvojë në industrinë e ndërtimit. Që nga viti 1992, Hoxha Engineering ndërton shkëlqimin përmes inovacionit dhe përkushtimit.",
+    "storyP2": "Misioni ynë është të ofrojmë shërbime ndërtimi me cilësi të lartë duke mbajtur standardet më të larta të sigurisë dhe qëndrueshmërisë.",
+    "storyP3": "Gjatë udhëtimit tonë, kemi përqafuar vazhdimisht inovacionin, investuar në zhvillimin e ekipit dhe prioritizuar kënaqësinë e klientit. Angazhimi ynë ndaj shkëlqimit na ka bërë partner të besueshëm për projekte ndërtimi në të gjithë Maqedoninë e Veriut.",
+    "yearsExcellence": "Vite Shkëlqimi",
+    "whatGuidesUs": "Çfarë Na Udhëheq",
+    "valuesIntro": "Vlerat tona thelbësore përcaktojnë kush jemi dhe udhëheqin qasjen tonë ndaj çdo projekti.",
+    "leadership": "Lidershipi Ynë",
+    "meetFounders": "Njihuni Me Themeluesit",
+    "foundersIntro": "Kompania jonë udhëhiqet nga profesionistë me përvojë të dedikuar ndaj shkëlqimit në ndërtim dhe inxhinieri.",
+    "achievements": "Arritjet Tona",
+    "achievementsIntro": "Mbi tre dekada suksesi në industrinë e ndërtimit",
+    "clientSatisfaction": "Kënaqësia e Klientit",
+    "values": {
+      "excellence": "Shkëlqim në Cilësi",
+      "excellenceDesc": "Jemi të përkushtuar të ofrojmë cilësinë më të lartë në çdo aspekt të punës sonë, nga materialet deri te mjeshtria.",
+      "deadlines": "Përkushtim ndaj Afateve",
+      "deadlinesDesc": "Kuptojmë rëndësinë e dorëzimit në kohë dhe jemi të dedikuar të përfundojmë projektet brenda afatit të rënë dakord.",
+      "innovation": "Zgjidhje Inovative",
+      "innovationDesc": "Kërkojmë vazhdimisht qasje dhe zgjidhje inovative për të përmirësuar cilësinë dhe efikasitetin e projekteve tona.",
+      "environment": "Përgjegjësi Mjedisore",
+      "environmentDesc": "Prioritizojmë praktika dhe materiale të qëndrueshme ndërtimi për të minimizuar ndikimin mjedisor.",
+      "satisfaction": "Kënaqësia e Klientit",
+      "satisfactionDesc": "Klientët tanë janë në qendër të gjithçkaje që bëjmë, duke siguruar që nevojat e tyre plotësohen dhe pritjet tejkalohen.",
+      "team": "Zhvillimi i Ekipit",
+      "teamDesc": "Investojmë në rritjen dhe zhvillimin e vazhdueshëm të ekipit tonë, duke nxitur një kulturë shkëlqimi dhe bashkëpunimi."
+    },
+    "keyProjects": "Projektet Kryesore"
   },
   "servicesPage": {
     "title": "Shërbimet Tona",
@@ -104,7 +178,16 @@
     "projectManagement": "Menaxhimi i Projekteve",
     "projectManagementDescription": "Ne menaxhojmë projektet tuaja nga fillimi deri në përfundim.",
     "consultation": "Konsultimi",
-    "consultationDescription": "Ofrojmë konsultim profesional për të gjitha aspektet e ndërtimit."
+    "consultationDescription": "Ofrojmë konsultim profesional për të gjitha aspektet e ndërtimit.",
+    "discussTitle": "Le të Diskutojmë Projektin Tuaj",
+    "discussDescription": "Gati të filloni projektin tuaj? Na kontaktoni sot për konsultim dhe lëreni ekspertët tanë t'ju sjellin vizionin në jetë.",
+    "leadEngineer": "Inxhinier Kryesor",
+    "siteSupervisor": "Supervizor i Vendit",
+    "teamBios": {
+      "selman": "I specializuar në zhvillime rezidenciale dhe me përdorim të përzier të qëndrueshme për më shumë se 15 vjet.",
+      "sevdail": "Ekspert në struktura betoni dhe çeliku me përvojë të thellë në vend.",
+      "engineer": "Siguron që çdo detaj në vend plotëson standardet më të larta të cilësisë dhe sigurisë."
+    }
   },
   "projectsPage": {
     "title": "Projektet Tona",

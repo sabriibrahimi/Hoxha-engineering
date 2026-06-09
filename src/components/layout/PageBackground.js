@@ -1,44 +1,30 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion';
+import { asset } from '../../utils/assets';
+import Reveal from '../common/Reveal';
 
-const PageBackground = ({ children, title, subtitle }) => {
+const PageBackground = ({ title, subtitle }) => {
+  const reduced = usePrefersReducedMotion();
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 400], [0, reduced ? 0 : 40]);
+
   return (
-    <section className="relative py-32 md:py-48 flex items-center">
-      {/* Background Image */}
-      <div className="absolute inset-0 w-full h-full overflow-hidden -z-10">
-        <div className="relative w-full h-full">
-          <img 
-            src='/Hoxha-engineering/images/pages.png'
-            alt="Page background" 
-            className="w-full h-full object-cover scale-105 transform will-change-transform transform-gpu"
-          />
-          <div className="absolute inset-0 bg-black/30"></div>
-        </div>
+    <section className="relative pt-[72px] overflow-hidden bg-secondary min-h-[340px] sm:min-h-[400px] flex items-end">
+      <motion.div className="absolute inset-0" style={{ y }}>
+        <img src={asset('/images/pages.png')} alt="" className="w-full h-full object-cover opacity-40" />
+      </motion.div>
+      <div className="absolute inset-0 bg-gradient-to-r from-secondary via-secondary/90 to-secondary/70" />
+      <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-30" />
+
+      <div className="container-premium relative pb-14 sm:pb-16 lg:pb-20 pt-12">
+        <Reveal direction="up">
+          <p className="label-premium-light mb-0 before:bg-bronze/70">Hoxha Engineering</p>
+          <h1 className="text-display-sm font-heading text-white mt-5 mb-4 text-balance">{title}</h1>
+          {subtitle && <p className="text-base text-white/55 max-w-xl leading-relaxed">{subtitle}</p>}
+        </Reveal>
       </div>
-      
-      <div className="container relative z-10">
-        <div className="text-center">
-          <motion.h1 
-            className="text-5xl md:text-6xl font-bold mb-4 text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            {title}
-          </motion.h1>
-          {subtitle && (
-            <motion.p 
-              className="text-xl max-w-3xl mx-auto text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              {subtitle}
-            </motion.p>
-          )}
-          {children}
-        </div>
-      </div>
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
     </section>
   );
 };

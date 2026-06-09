@@ -1,88 +1,68 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
+import { asset } from '../../utils/assets';
+import { usePrefersReducedMotion } from '../../hooks/usePrefersReducedMotion';
 
 const Hero = () => {
-  return (
-    <section className="relative w-full h-screen">
-      {/* Background Image - Full Width/Height Container */}
-      <div className="absolute inset-0 w-full h-full overflow-hidden">
-        <div className="relative w-full h-full">
-          <img
-               src={process.env.PUBLIC_URL + '/images/Homeimage.png?v=1'}
-            alt="Construction site" 
-            className="w-full h-full object-cover object-center"
-          />
-          <div className="absolute inset-0 bg-black opacity-30"></div>
-        </div>
-      </div>
+  const { t, i18n } = useTranslation();
+  const reduced = usePrefersReducedMotion();
+  const { scrollY } = useScroll();
+  const imageY = useTransform(scrollY, [0, 800], [0, reduced ? 0 : 70]);
+  const localized = (path) => i18n.language === 'sq' ? path : `/${i18n.language}${path}`;
 
-      {/* Content */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="container relative z-10 text-center px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto"
-          >
-            <motion.h1 
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 text-white leading-tight"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              Building Your Dream Home
-            </motion.h1>
-            
-            <motion.p 
-              className="text-base sm:text-lg md:text-xl lg:text-2xl mb-8 sm:mb-10 text-white px-4 sm:px-0 leading-relaxed"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              Professional construction and architectural services for residential and commercial projects
-            </motion.p>
-            
-            <motion.div 
-              className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 px-4 sm:px-0"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              <Link to="/services" className="btn btn-primary px-6 py-3 text-sm sm:text-base md:text-lg w-full sm:w-auto">
-                Our Services
-              </Link>
-              <Link to="/contact" className="btn bg-white text-secondary hover:bg-gray-100 px-6 py-3 text-sm sm:text-base md:text-lg w-full sm:w-auto">
-                Contact Us
-              </Link>
-            </motion.div>
+  return (
+    <section className="relative min-h-[100svh] bg-secondary-dark text-white overflow-hidden flex flex-col">
+      <motion.div className="absolute inset-0 lg:left-[38%]" style={{ y: imageY }}>
+        <img src={asset('/images/Homeimage.png')} alt="" className="w-full h-[calc(100%+70px)] object-cover image-grade" />
+      </motion.div>
+      <div className="absolute inset-0 bg-secondary/45 lg:bg-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-secondary-dark via-secondary-dark/95 lg:via-secondary-dark/80 to-secondary-dark/10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-secondary-dark via-transparent to-secondary-dark/60" />
+      <div className="absolute inset-0 bg-noise opacity-70 pointer-events-none" />
+
+      <div className="relative z-10 flex-1 container-premium w-full pt-32 sm:pt-36 lg:pt-40 pb-12 flex items-center">
+        <div className="grid lg:grid-cols-12 w-full gap-10">
+          <motion.div className="lg:col-span-8 xl:col-span-7" initial={{ opacity: 0, y: 26 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .8, ease: [0.22, 1, 0.36, 1] }}>
+            <div className="flex items-center gap-4 mb-7">
+              <span className="w-10 h-px bg-bronze" />
+              <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.28em] text-bronze font-semibold">{t('trust.established')} 1992 · Kumanovo</span>
+            </div>
+            <h1 className="text-display font-heading max-w-5xl text-balance">
+              {t('hero.title')}
+            </h1>
+            <div className="grid sm:grid-cols-2 gap-7 sm:gap-10 mt-8 sm:mt-10 max-w-3xl items-end">
+              <p className="text-base sm:text-lg text-white/60 leading-relaxed">{t('hero.subtitle')}</p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link to={localized('/projects')} className="btn btn-primary">{t('projectsPage.allProjects')} <span aria-hidden="true">&rarr;</span></Link>
+                <Link to={localized('/contact')} className="btn btn-outline-light">{t('hero.contactBtn')}</Link>
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>
-      
-      {/* Scroll Indicator */}
-      <motion.div 
-        className="absolute bottom-6 sm:bottom-10 left-1/2 transform -translate-x-1/2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, y: [0, 10, 0] }}
-        transition={{ duration: 1.5, repeat: Infinity, delay: 1 }}
-      >
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          className="h-8 w-8 sm:h-10 sm:w-10 text-primary" 
-          fill="none" 
-          viewBox="0 0 24 24" 
-          stroke="currentColor"
-        >
-          <path 
-            strokeLinecap="round" 
-            strokeLinejoin="round" 
-            strokeWidth={2} 
-            d="M19 14l-7 7m0 0l-7-7m7 7V3" 
-          />
-        </svg>
-      </motion.div>
+
+      <div className="relative z-10 border-t border-white/10 bg-secondary-dark/80 backdrop-blur-sm">
+        <div className="container-premium grid grid-cols-2 lg:grid-cols-4">
+          {[
+            ['33+', t('stats.yearsExperience')],
+            ['512+', t('stats.projectsFinished')],
+            ['1992', t('trust.established')],
+            [t('trust.regionValue'), t('trust.region')],
+          ].map(([value, label], i) => (
+            <div key={label} className={`py-5 sm:py-7 px-3 sm:px-6 lg:px-8 ${i > 0 ? 'border-l border-white/10' : ''}`}>
+              <div className="text-lg sm:text-2xl font-heading font-semibold text-white">{value}</div>
+              <div className="text-[9px] sm:text-[10px] uppercase tracking-[0.18em] text-white/35 mt-1">{label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="hidden lg:block absolute right-12 top-1/2 -translate-y-1/2 z-10">
+        <div className="h-32 w-px bg-white/20 mx-auto" />
+        <div className="mt-5 text-[9px] tracking-[0.28em] text-white/35 uppercase [writing-mode:vertical-rl]">Engineering with purpose</div>
+      </div>
     </section>
   );
 };

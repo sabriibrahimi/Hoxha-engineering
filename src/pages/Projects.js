@@ -1,131 +1,73 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import PageBackground from '../components/layout/PageBackground';
-
-const ProjectCard = ({ title, location, image, index }) => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
-  return (
-      <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.6, delay: 0.1 * index }}
-          className="group relative overflow-hidden rounded-lg shadow-lg"
-      >
-        <div className="relative h-80">
-          <img
-              src={image}
-              alt={title}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-70"></div>
-          <div className="absolute bottom-0 left-0 right-0 p-6 text-white text-center">
-            <h3 className="text-2xl font-bold mb-1">{title}</h3>
-            <p className="text-lg opacity-90">{location}</p>
-            <motion.div
-                initial={{ width: 0 }}
-                animate={inView ? { width: '60px' } : { width: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 * index + 0.3 }}
-                className="h-1 bg-primary rounded mt-3 mx-auto"
-            ></motion.div>
-          </div>
-        </div>
-      </motion.div>
-  );
-};
+import SectionHeading from '../components/common/SectionHeading';
+import ProjectCard from '../components/common/ProjectCard';
+import CTABand from '../components/common/CTABand';
+import BackToTop from '../components/common/BackToTop';
+import { getProjectsData } from '../data/siteData';
 
 const Projects = () => {
   const { t } = useTranslation();
-  const [headerRef, headerInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+  const [filter, setFilter] = useState('all');
+  const projects = getProjectsData(t);
 
-  // Using the images we have available
-  const projects = [
-    {
-      title: 'Residential Complex',
-      location: 'Kumanovo, North Macedonia',
-      image: '/Hoxha-engineering/images/Services_images/residential.png?v=1'
-    },
-    {
-      title: 'Individual Housing Project',
-      location: 'Skopje, North Macedonia',
-      image: '/Hoxha-engineering/images/Services_images/Individual.png?v=1'
-    },
-    {
-      title: 'Collective Housing Development',
-      location: 'Tetovo, North Macedonia',
-      image: '/Hoxha-engineering/images/Services_images/collective.png?v=1'
-    },
-    {
-      title: 'Public Administrative Building',
-      location: 'Kumanovo, North Macedonia',
-      image: '/Hoxha-engineering/images/Services_images/public.png?v=1'
-    },
-    {
-      title: 'Social Housing Project',
-      location: 'Gostivar, North Macedonia',
-      image: '/Hoxha-engineering/images/Services_images/social.png?v=1'
-    },
-    {
-      title: 'Commercial Building',
-      location: 'Skopje, North Macedonia',
-      image: '/Hoxha-engineering/images/Construction_Engineer.png?v=1'
-    },
+  const filters = [
+    { key: 'all', label: t('common.all') },
+    { key: 'residential', label: t('projectsPage.residential') },
+    { key: 'commercial', label: t('projectsPage.commercial') },
+    { key: 'industrial', label: t('projectsPage.industrial') },
   ];
 
+  const filtered = filter === 'all' ? projects : projects.filter((p) => p.category === filter);
+
   return (
-      <div>
-        <Header />
+    <div className="overflow-x-hidden bg-surface">
+      <Header />
+      <PageBackground title={t('projectsPage.title')} subtitle={t('projectsPage.subtitle')} />
 
-        {/* Hero Section */}
-        <PageBackground
-            title={t('projectsPage.title')}
-            subtitle={t('projectsPage.subtitle')}
-        />
+      <section className="section-premium bg-surface-warm">
+        <div className="container-premium">
+          <SectionHeading label={t('projectsPage.featuredProjects')} title={t('projectsPage.allProjects')} />
 
-        {/* Projects Gallery */}
-        <section className="py-24">
-          <div className="container">
-            <div className="text-center mb-16">
-              <span className="text-xl text-primary font-semibold mb-2 block">{t('projectsPage.featuredProjects')}</span>
-              <h2 className="text-4xl md:text-5xl font-bold text-secondary mb-6">{t('projectsPage.allProjects')}</h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {projects.map((project, index) => (
-                  <ProjectCard
-                      key={project.title}
-                      title={project.title}
-                      location={project.location}
-                      image={project.image}
-                      index={index}
-                  />
-              ))}
-            </div>
+          <div className="flex flex-wrap gap-2 mb-12">
+            {filters.map((f) => (
+              <button
+                key={f.key}
+                type="button"
+                onClick={() => setFilter(f.key)}
+                className={`px-5 py-2.5 text-xs font-semibold uppercase tracking-widest transition-colors ${
+                  filter === f.key
+                    ? 'bg-secondary text-white'
+                    : 'bg-white text-muted border border-line hover:border-secondary/30 hover:text-secondary'
+                }`}
+              >
+                {f.label}
+              </button>
+            ))}
           </div>
-        </section>
 
-        {/* Call to Action */}
-        <section className="bg-primary py-16 text-white">
-          <div className="container text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">{t('hero.title')}</h2>
-            <p className="text-lg mb-8 max-w-3xl mx-auto">{t('hero.subtitle')}</p>
-            <a href="#/contact" className="btn bg-white text-primary hover:bg-gray-100 inline-block">{t('hero.contactBtn')}</a>
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-px bg-white/[0.06]">
+            {filtered.map((project, index) => (
+              <ProjectCard
+                key={project.title}
+                title={project.title}
+                location={project.location}
+                image={project.image}
+                category={filters.find((f) => f.key === project.category)?.label}
+                index={index}
+              />
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <Footer />
-      </div>
+      <CTABand title={t('hero.title')} description={t('hero.subtitle')} buttonText={t('hero.contactBtn')} />
+      <Footer />
+      <BackToTop />
+    </div>
   );
 };
 
