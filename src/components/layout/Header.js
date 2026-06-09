@@ -71,9 +71,9 @@ const Header = () => {
             <div className={`p-1.5 border transition-colors ${transparent ? 'border-white/20 group-hover:border-white/40' : 'border-line group-hover:border-primary/30'}`}>
               <img src={asset('/images/removed.png')} alt="" className="w-8 h-8" />
             </div>
-            <div className="hidden sm:block leading-none">
-              <span className={`block text-sm lg:text-base font-heading font-bold tracking-tight ${transparent ? 'text-white' : 'text-secondary'}`}>HOXHA</span>
-              <span className={`block text-[9px] lg:text-[10px] tracking-[0.25em] font-medium mt-1 ${transparent ? 'text-white/50' : 'text-muted'}`}>ENGINEERING</span>
+            <div className="block leading-none">
+              <span className={`block text-xs sm:text-sm lg:text-base font-heading font-bold tracking-tight ${transparent ? 'text-white' : 'text-secondary'}`}>HOXHA</span>
+              <span className={`block text-[7px] sm:text-[9px] lg:text-[10px] tracking-[0.18em] sm:tracking-[0.25em] font-medium mt-1 ${transparent ? 'text-white/50' : 'text-muted'}`}>ENGINEERING</span>
             </div>
           </Link>
 
