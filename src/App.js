@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation, useParams } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, useLocation, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import './App.css';
 
@@ -35,7 +35,7 @@ function LanguageWrapper({ children }) {
 
 function App() {
   return (
-    <Router basename="/Hoxha-engineering">
+    <Router>
       <ScrollToTop />
       <div className="App">
         <Routes>
