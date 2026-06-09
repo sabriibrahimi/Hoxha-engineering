@@ -226,6 +226,21 @@
     "saturday": "Saturday: 9:00 AM - 1:00 PM",
     "sunday": "Sunday: Closed"
   },
+  "staff": {
+    "sectionLabel": "The People Behind the Work",
+    "title": "Our Staff",
+    "intro": "Meet the architects, engineers, and project professionals who turn careful planning into dependable buildings.",
+    "viewProjects": "View Projects",
+    "professionalProfile": "Professional Profile",
+    "backToTeam": "Back to Our Staff",
+    "projectPortfolio": "Work Within the Firm",
+    "completedProjects": "Selected Projects",
+    "projectsIntro": "A selection of projects developed and delivered as part of the Hoxha Engineering team.",
+    "featuredProjects": "Selected Projects",
+    "firmProjects": "Firm Portfolio",
+    "notFound": "Staff Profile Not Found",
+    "notFoundDescription": "The requested professional profile is not available."
+  },
   "common": {
     "readMore": "Read More",
     "learnMore": "Learn More",

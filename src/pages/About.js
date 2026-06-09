@@ -8,6 +8,7 @@ import CTABand from '../components/common/CTABand';
 import BackToTop from '../components/common/BackToTop';
 import Reveal from '../components/common/Reveal';
 import { asset } from '../utils/assets';
+import StaffSection from '../components/about/StaffSection';
 
 const About = () => {
   const { t } = useTranslation();
@@ -100,6 +101,8 @@ const About = () => {
           </div>
         </div>
       </section>
+
+      <StaffSection />
 
       <section className="section-premium-sm bg-secondary">
         <div className="container-premium">

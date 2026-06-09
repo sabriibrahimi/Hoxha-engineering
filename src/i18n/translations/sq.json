@@ -226,6 +226,21 @@
     "saturday": "E shtunë: 9:00 - 13:00",
     "sunday": "E diel: Mbyllur"
   },
+  "staff": {
+    "sectionLabel": "Profesionistët Pas Punës",
+    "title": "Stafi Ynë",
+    "intro": "Njihuni me arkitektët, inxhinierët dhe profesionistët e projekteve që e kthejnë planifikimin e kujdesshëm në ndërtesa të besueshme.",
+    "viewProjects": "Shiko Projektet",
+    "professionalProfile": "Profili Profesional",
+    "backToTeam": "Kthehu te Stafi Ynë",
+    "projectPortfolio": "Puna Brenda Firmës",
+    "completedProjects": "Projektet e Përzgjedhura",
+    "projectsIntro": "Një përzgjedhje e projekteve të zhvilluara dhe realizuara si pjesë e ekipit të Hoxha Engineering.",
+    "featuredProjects": "Projekte të Përzgjedhura",
+    "firmProjects": "Portfolio e Firmës",
+    "notFound": "Profili i Stafit Nuk U Gjet",
+    "notFoundDescription": "Profili profesional i kërkuar nuk është i disponueshëm."
+  },
   "common": {
     "readMore": "Lexo Më Shumë",
     "learnMore": "Mëso Më Shumë",

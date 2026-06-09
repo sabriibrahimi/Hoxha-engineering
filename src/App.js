@@ -9,6 +9,7 @@ import Projects from './pages/Projects';
 import Services from './pages/Services';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import StaffDetail from './pages/StaffDetail';
 
 function ScrollToTop() {
   const location = useLocation();
@@ -47,12 +48,14 @@ function App() {
           <Route path="/:lang/services" element={<LanguageWrapper><Services /></LanguageWrapper>} />
           <Route path="/:lang/about" element={<LanguageWrapper><About /></LanguageWrapper>} />
           <Route path="/:lang/contact" element={<LanguageWrapper><Contact /></LanguageWrapper>} />
+          <Route path="/:lang/staff/:staffSlug" element={<LanguageWrapper><StaffDetail /></LanguageWrapper>} />
           
           {/* Fallback routes without language prefix */}
           <Route path="/projects" element={<LanguageWrapper><Projects /></LanguageWrapper>} />
           <Route path="/services" element={<LanguageWrapper><Services /></LanguageWrapper>} />
           <Route path="/about" element={<LanguageWrapper><About /></LanguageWrapper>} />
           <Route path="/contact" element={<LanguageWrapper><Contact /></LanguageWrapper>} />
+          <Route path="/staff/:staffSlug" element={<LanguageWrapper><StaffDetail /></LanguageWrapper>} />
         </Routes>
       </div>
     </Router>
