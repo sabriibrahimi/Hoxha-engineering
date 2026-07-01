@@ -52,7 +52,7 @@ const ServiceCard = ({ title, description, image, icon, index = 0 }) => {
           <h3 className={`text-lg sm:text-xl font-heading font-bold mb-3 transition-colors duration-300 ${hovered ? 'text-white' : 'text-white'}`}>
             {title}
           </h3>
-          <p className={`text-sm leading-relaxed transition-colors duration-300 ${hovered ? 'text-white/75' : 'text-white/50'}`}>
+          <p className={`text-sm leading-relaxed transition-colors duration-300 ${hovered ? 'text-white/80' : 'text-white/70'}`}>
             {description}
           </p>
         </div>

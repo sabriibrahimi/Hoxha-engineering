@@ -24,7 +24,7 @@ const Founders = () => {
             <div className="w-full h-px bg-white/10 my-8" />
             <div className="grid sm:grid-cols-3 gap-6">
               {[['33+', t('stats.yearsExperience')], ['512+', t('stats.projectsFinished')], ['100%', t('aboutPage.clientSatisfaction')]].map(([v, l]) => (
-                <div key={l}><strong className="block text-2xl font-heading text-white">{v}</strong><span className="text-[10px] uppercase tracking-[0.18em] text-white/35">{l}</span></div>
+                <div key={l}><strong className="block text-2xl font-heading text-white">{v}</strong><span className="text-[10px] uppercase tracking-[0.18em] text-white/60">{l}</span></div>
               ))}
             </div>
           </Reveal>

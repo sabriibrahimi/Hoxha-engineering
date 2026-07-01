@@ -11,7 +11,7 @@ const FeaturedProjects = () => {
   const path = i18n.language === 'sq' ? '/projects' : `/${i18n.language}/projects`;
 
   return (
-    <section className="section-premium bg-surface-card overflow-hidden">
+    <section className="section-premium bg-surface-card overflow-hidden section-divider">
       <div className="container-premium">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-end mb-12 lg:mb-16">
           <Reveal className="lg:col-span-8">

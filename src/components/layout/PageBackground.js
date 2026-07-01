@@ -21,7 +21,7 @@ const PageBackground = ({ title, subtitle }) => {
         <Reveal direction="up">
           <p className="label-premium-light mb-0 before:bg-bronze/70">Hoxha Engineering</p>
           <h1 className="text-display-sm font-heading text-white mt-5 mb-4 text-balance">{title}</h1>
-          {subtitle && <p className="text-base text-white/55 max-w-xl leading-relaxed">{subtitle}</p>}
+          {subtitle && <p className="text-base text-white/70 max-w-xl leading-relaxed">{subtitle}</p>}
         </Reveal>
       </div>
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />

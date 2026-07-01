@@ -9,7 +9,7 @@ const About = () => {
   const path = i18n.language === 'sq' ? '/about' : `/${i18n.language}/about`;
 
   return (
-    <section className="section-premium bg-surface-card overflow-hidden">
+    <section className="section-premium bg-surface-card overflow-hidden section-divider">
       <div className="container-premium">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           <Reveal direction="left" className="lg:col-span-7">

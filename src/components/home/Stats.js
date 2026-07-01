@@ -12,13 +12,13 @@ const Stats = () => {
   ];
 
   return (
-    <section className="bg-surface-warm border-b border-line">
+    <section className="bg-surface-warm section-divider">
       <div className="container-premium">
         <Reveal>
           <div className="grid lg:grid-cols-12">
             <div className="lg:col-span-4 py-9 lg:py-12 lg:pr-12 border-b lg:border-b-0 lg:border-r border-line">
               <p className="text-[10px] uppercase tracking-[0.24em] text-primary font-semibold mb-3">{t('trust.experience')}</p>
-              <p className="text-sm text-muted leading-relaxed max-w-sm">{t('stats.description')}</p>
+              <p className="text-sm text-muted leading-relaxed max-w-md">{t('stats.description')}</p>
             </div>
             <div className="lg:col-span-8 grid sm:grid-cols-2 xl:grid-cols-4">
               {assurances.map((item, i) => (

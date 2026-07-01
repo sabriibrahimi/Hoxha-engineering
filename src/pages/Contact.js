@@ -9,8 +9,32 @@ import Reveal from '../components/common/Reveal';
 const Contact = () => {
   const { t } = useTranslation();
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [touched, setTouched] = useState({});
 
-  const handleSubmit = (e) => { e.preventDefault(); setSubmitted(true); };
+  const validate = (form) => {
+    const data = new FormData(form);
+    const nextErrors = {};
+    ['name', 'email', 'subject', 'message'].forEach((field) => {
+      if (!String(data.get(field) || '').trim()) nextErrors[field] = t('common.required');
+    });
+    const email = String(data.get('email') || '').trim();
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) nextErrors.email = t('contactPage.emailInvalid');
+    return nextErrors;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const nextErrors = validate(e.currentTarget);
+    setTouched({ name: true, email: true, subject: true, message: true });
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length === 0) setSubmitted(true);
+  };
+
+  const handleBlur = (e) => {
+    setTouched((current) => ({ ...current, [e.target.name]: true }));
+    setErrors(validate(e.currentTarget.form));
+  };
 
   return (
     <div className="overflow-x-hidden bg-surface">
@@ -30,28 +54,32 @@ const Contact = () => {
                   <p className="font-heading font-bold text-secondary">{t('common.success')}</p>
                 </div>
               ) : (
-                <form className="space-y-5" onSubmit={handleSubmit}>
+                <form className="space-y-5" onSubmit={handleSubmit} noValidate>
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-[11px] uppercase tracking-widest text-muted font-semibold mb-2">{t('contactPage.name')}</label>
-                      <input type="text" required className="form-input" placeholder={t('contactPage.namePlaceholder')} />
+                      <label htmlFor="contact-name" className="block text-[11px] uppercase tracking-widest text-muted font-semibold mb-2">{t('contactPage.name')}</label>
+                      <input id="contact-name" name="name" type="text" className="form-input" placeholder={t('contactPage.namePlaceholder')} onBlur={handleBlur} aria-invalid={Boolean(touched.name && errors.name)} aria-describedby="contact-name-error" />
+                      {touched.name && errors.name && <p id="contact-name-error" className="form-error">{errors.name}</p>}
                     </div>
                     <div>
-                      <label className="block text-[11px] uppercase tracking-widest text-muted font-semibold mb-2">{t('contactPage.email')}</label>
-                      <input type="email" required className="form-input" placeholder={t('contactPage.emailPlaceholder')} />
+                      <label htmlFor="contact-email" className="block text-[11px] uppercase tracking-widest text-muted font-semibold mb-2">{t('contactPage.email')}</label>
+                      <input id="contact-email" name="email" type="email" className="form-input" placeholder={t('contactPage.emailPlaceholder')} onBlur={handleBlur} aria-invalid={Boolean(touched.email && errors.email)} aria-describedby="contact-email-error" />
+                      {touched.email && errors.email && <p id="contact-email-error" className="form-error">{errors.email}</p>}
                     </div>
                   </div>
                   <div>
-                    <label className="block text-[11px] uppercase tracking-widest text-muted font-semibold mb-2">{t('contactPage.phone')}</label>
-                    <input type="tel" className="form-input" placeholder={t('contactPage.phonePlaceholder')} />
+                    <label htmlFor="contact-phone" className="block text-[11px] uppercase tracking-widest text-muted font-semibold mb-2">{t('contactPage.phone')}</label>
+                    <input id="contact-phone" name="phone" type="tel" className="form-input" placeholder={t('contactPage.phonePlaceholder')} />
                   </div>
                   <div>
-                    <label className="block text-[11px] uppercase tracking-widest text-muted font-semibold mb-2">{t('contactPage.subject')}</label>
-                    <input type="text" required className="form-input" placeholder={t('contactPage.subjectPlaceholder')} />
+                    <label htmlFor="contact-subject" className="block text-[11px] uppercase tracking-widest text-muted font-semibold mb-2">{t('contactPage.subject')}</label>
+                    <input id="contact-subject" name="subject" type="text" className="form-input" placeholder={t('contactPage.subjectPlaceholder')} onBlur={handleBlur} aria-invalid={Boolean(touched.subject && errors.subject)} aria-describedby="contact-subject-error" />
+                    {touched.subject && errors.subject && <p id="contact-subject-error" className="form-error">{errors.subject}</p>}
                   </div>
                   <div>
-                    <label className="block text-[11px] uppercase tracking-widest text-muted font-semibold mb-2">{t('contactPage.message')}</label>
-                    <textarea rows="5" required className="form-input resize-none" placeholder={t('contactPage.messagePlaceholder')} />
+                    <label htmlFor="contact-message" className="block text-[11px] uppercase tracking-widest text-muted font-semibold mb-2">{t('contactPage.message')}</label>
+                    <textarea id="contact-message" name="message" rows="5" className="form-input resize-none" placeholder={t('contactPage.messagePlaceholder')} onBlur={handleBlur} aria-invalid={Boolean(touched.message && errors.message)} aria-describedby="contact-message-error" />
+                    {touched.message && errors.message && <p id="contact-message-error" className="form-error">{errors.message}</p>}
                   </div>
                   <button type="submit" className="btn btn-primary w-full sm:w-auto px-10">{t('contactPage.sendMessage')}</button>
                 </form>

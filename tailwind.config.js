@@ -26,14 +26,15 @@ module.exports = {
         muted: '#687076',
         line: '#dedbd4',
         bronze: '#b79a72',
+        bronzeStrong: '#d0a46d',
       },
       fontFamily: {
         sans: ['DM Sans', 'system-ui', 'sans-serif'],
         heading: ['Manrope', 'system-ui', 'sans-serif'],
       },
       fontSize: {
-        'display': ['clamp(2.65rem,6.4vw,5.8rem)', { lineHeight: '0.98', letterSpacing: '-0.055em', fontWeight: '650' }],
-        'display-sm': ['clamp(2rem,4.5vw,4rem)', { lineHeight: '1.02', letterSpacing: '-0.045em', fontWeight: '650' }],
+        'display': ['clamp(2.35rem,6.1vw,5.45rem)', { lineHeight: '1.02', letterSpacing: '-0.052em', fontWeight: '650' }],
+        'display-sm': ['clamp(1.9rem,4.2vw,3.75rem)', { lineHeight: '1.05', letterSpacing: '-0.04em', fontWeight: '650' }],
       },
       boxShadow: {
         'premium': '0 4px 24px -4px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04)',

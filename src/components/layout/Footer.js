@@ -24,24 +24,24 @@ const Footer = () => {
       <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-20 pointer-events-none" />
 
       <div className="container-premium relative pt-16 sm:pt-20 pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 pb-14 border-b border-white/[0.06]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 pb-14 border-b border-white/15">
           <div className="lg:col-span-4">
             <Link to={getLocalizedPath('/')} className="inline-flex items-center gap-3 mb-6">
               <img src={asset('/images/removed.png')} alt="" className="w-10 h-10" />
               <div>
                 <div className="text-base font-heading font-bold tracking-tight">HOXHA</div>
-                <div className="text-[10px] tracking-[0.25em] text-white/40 font-medium">ENGINEERING</div>
+                <div className="text-[10px] tracking-[0.25em] text-white/60 font-medium">ENGINEERING</div>
               </div>
             </Link>
-            <p className="text-sm text-white/45 leading-relaxed max-w-xs">{t('footer.buildingExcellence')}</p>
+            <p className="text-sm text-white/70 leading-relaxed max-w-xs">{t('footer.buildingExcellence')}</p>
           </div>
 
           <div className="lg:col-span-2">
-            <h4 className="text-[11px] uppercase tracking-[0.2em] text-white/30 font-semibold mb-5">{t('footer.quickLinks')}</h4>
+            <h4 className="text-[11px] uppercase tracking-[0.2em] text-bronze font-semibold mb-5">{t('footer.quickLinks')}</h4>
             <ul className="space-y-3">
               {navLinks.map((item) => (
                 <li key={item.to}>
-                  <Link to={getLocalizedPath(item.to)} className="text-sm text-white/55 hover:text-white transition-colors">
+                  <Link to={getLocalizedPath(item.to)} className="text-sm text-white/75 hover:text-white transition-colors">
                     {t(item.labelKey)}
                   </Link>
                 </li>
@@ -50,8 +50,8 @@ const Footer = () => {
           </div>
 
           <div className="lg:col-span-3">
-            <h4 className="text-[11px] uppercase tracking-[0.2em] text-white/30 font-semibold mb-5">{t('footer.contact')}</h4>
-            <ul className="space-y-3 text-sm text-white/55">
+            <h4 className="text-[11px] uppercase tracking-[0.2em] text-bronze font-semibold mb-5">{t('footer.contact')}</h4>
+            <ul className="space-y-3 text-sm text-white/75">
               <li>4PR6+8VM, Kumanovo</li>
               <li><a href="tel:+38931424503" className="hover:text-white transition-colors">031424503</a></li>
               <li><a href="mailto:Hoxha-ing@live.com" className="hover:text-white transition-colors">Hoxha-ing@live.com</a></li>
@@ -59,7 +59,7 @@ const Footer = () => {
           </div>
 
           <div className="lg:col-span-3">
-            <h4 className="text-[11px] uppercase tracking-[0.2em] text-white/30 font-semibold mb-5">{t('footer.connectWithUs')}</h4>
+            <h4 className="text-[11px] uppercase tracking-[0.2em] text-bronze font-semibold mb-5">{t('footer.connectWithUs')}</h4>
             <div className="flex gap-3">
               {[
                 { href: 'https://www.facebook.com/profile.php?id=100057076855558', label: 'Facebook' },
@@ -71,7 +71,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="w-10 h-10 border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:border-white/30 transition-colors text-xs font-bold"
+                  className="w-10 h-10 border border-white/25 flex items-center justify-center text-white/75 hover:text-white hover:border-bronze transition-colors text-xs font-bold"
                 >
                   {s.label[0]}
                 </a>
@@ -80,11 +80,11 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="py-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-white/30 border-b border-white/[0.06]">
+        <div className="py-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-white/60 border-b border-white/15">
           <p>{t('footer.copyright')}</p>
           <p>
             Developed by{' '}
-            <a href="https://sabriibrahimi.github.io/LandingPage/" target="_blank" rel="noopener noreferrer" className="text-white/50 hover:text-bronze transition-colors">
+            <a href="https://sabriibrahimi.github.io/LandingPage/" target="_blank" rel="noopener noreferrer" className="text-white/75 hover:text-bronze transition-colors">
               Sabri Ibrahimi
             </a>
           </p>

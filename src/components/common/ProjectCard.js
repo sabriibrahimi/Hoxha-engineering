@@ -38,7 +38,7 @@ const ProjectCard = ({ title, location, image, index = 0, category }) => {
           <span className="text-[10px] uppercase tracking-[0.2em] text-bronze font-semibold mb-2 block">{category}</span>
         )}
         <h3 className="text-lg font-heading font-bold text-white mb-1">{title}</h3>
-        <p className="text-sm text-white/45">{location}</p>
+        <p className="text-sm text-white/70">{location}</p>
       </div>
     </motion.article>
   );

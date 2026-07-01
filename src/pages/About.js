@@ -56,7 +56,7 @@ const About = () => {
                 <img src={asset('/images/Construction_Engineer.png')} alt="" className="w-full aspect-[4/3] object-cover" loading="lazy" />
                 <div className="absolute -bottom-5 -left-5 bg-secondary text-white p-6 border-l-2 border-primary">
                   <div className="text-3xl font-heading font-bold">33+</div>
-                  <div className="text-xs uppercase tracking-widest text-white/50 mt-1">{t('aboutPage.yearsExcellence')}</div>
+                  <div className="text-xs uppercase tracking-widest text-white/70 mt-1">{t('aboutPage.yearsExcellence')}</div>
                 </div>
               </div>
             </Reveal>
@@ -112,7 +112,7 @@ const About = () => {
               <Reveal key={s.label} delay={i * 0.08}>
                 <div className="bg-secondary-light p-8 text-center">
                   <div className="text-3xl sm:text-4xl font-heading font-bold text-white mb-1">{s.value}</div>
-                  <div className="text-xs uppercase tracking-widest text-white/40">{s.label}</div>
+                  <div className="text-xs uppercase tracking-widest text-white/70">{s.label}</div>
                 </div>
               </Reveal>
             ))}

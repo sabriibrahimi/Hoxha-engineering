@@ -53,7 +53,7 @@ const Header = () => {
   }, [menuOpen]);
 
   const navLink = (active) => {
-    if (transparent) return active ? 'text-white' : 'text-white/60 hover:text-white';
+    if (transparent) return active ? 'text-white' : 'text-white/75 hover:text-white';
     return active ? 'text-primary' : 'text-muted hover:text-secondary';
   };
 
@@ -73,7 +73,7 @@ const Header = () => {
             </div>
             <div className="block leading-none">
               <span className={`block text-xs sm:text-sm lg:text-base font-heading font-bold tracking-tight ${transparent ? 'text-white' : 'text-secondary'}`}>HOXHA</span>
-              <span className={`block text-[7px] sm:text-[9px] lg:text-[10px] tracking-[0.18em] sm:tracking-[0.25em] font-medium mt-1 ${transparent ? 'text-white/50' : 'text-muted'}`}>ENGINEERING</span>
+              <span className={`block text-[7px] sm:text-[9px] lg:text-[10px] tracking-[0.18em] sm:tracking-[0.25em] font-medium mt-1 ${transparent ? 'text-white/70' : 'text-muted'}`}>ENGINEERING</span>
             </div>
           </Link>
 
@@ -102,7 +102,7 @@ const Header = () => {
                   className={`w-8 h-8 text-[11px] font-bold tracking-wide transition-colors ${
                     i18n.language === lang
                       ? transparent ? 'text-white bg-white/10' : 'text-primary bg-primary/5'
-                      : transparent ? 'text-white/40 hover:text-white/70' : 'text-muted hover:text-secondary'
+                      : transparent ? 'text-white/70 hover:text-white' : 'text-muted hover:text-secondary'
                   }`}
                 >
                   {lang === 'sq' ? 'AL' : lang.toUpperCase()}
@@ -145,7 +145,7 @@ const Header = () => {
                 <img src={asset('/images/removed.png')} alt="" className="w-8 h-8" />
                 <span className="text-sm font-heading font-bold text-white tracking-tight">HOXHA ENGINEERING</span>
               </Link>
-              <button type="button" onClick={() => setMenuOpen(false)} className="text-white/60 hover:text-white p-2" aria-label="Close">
+              <button type="button" onClick={() => setMenuOpen(false)} className="text-white/80 hover:text-white p-2" aria-label="Close">
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -159,7 +159,7 @@ const Header = () => {
                     to={getLocalizedPath(item.to)}
                     onClick={() => setMenuOpen(false)}
                     className={`block py-5 border-b border-white/10 text-2xl font-heading font-bold tracking-tight transition-colors ${
-                      isActive(item.to) ? 'text-bronze' : 'text-white/80 hover:text-white'
+                      isActive(item.to) ? 'text-bronze' : 'text-white/90 hover:text-white'
                     }`}
                   >
                     {t(item.labelKey)}
@@ -174,7 +174,7 @@ const Header = () => {
                     type="button"
                     onClick={() => switchLanguage(lang)}
                     className={`flex-1 py-3 text-sm font-bold tracking-widest border transition-colors ${
-                      i18n.language === lang ? 'bg-primary border-primary text-white' : 'border-white/20 text-white/60'
+                      i18n.language === lang ? 'bg-bronze border-bronze text-secondary-dark' : 'border-white/40 text-white/80'
                     }`}
                   >
                     {lang === 'sq' ? 'AL' : lang.toUpperCase()}

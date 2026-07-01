@@ -11,7 +11,7 @@ const Services = () => {
   const path = i18n.language === 'sq' ? '/services' : `/${i18n.language}/services`;
 
   return (
-    <section id="services" className="section-premium bg-secondary text-white relative overflow-hidden">
+    <section id="services" className="section-premium bg-secondary text-white relative overflow-hidden section-divider-dark">
       <div className="absolute inset-0 bg-grid-pattern bg-grid opacity-20" />
       <div className="container-premium relative">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 mb-12 lg:mb-16">
@@ -20,7 +20,7 @@ const Services = () => {
             <h2 className="text-display-sm font-heading text-balance">{t('services.qualityServices')}</h2>
           </Reveal>
           <Reveal delay={0.1} className="lg:col-span-5 lg:pt-10">
-            <p className="text-white/50 leading-relaxed mb-7">{t('servicesPage.subtitle')}. {t('about.practicesDescription')}</p>
+            <p className="text-white/75 leading-relaxed mb-7 max-w-prose">{t('servicesPage.subtitle')}. {t('about.practicesDescription')}</p>
             <Link to={path} className="btn btn-outline-light">{t('services.viewAll')} <span aria-hidden="true">&rarr;</span></Link>
           </Reveal>
         </div>
@@ -33,9 +33,9 @@ const Services = () => {
                 <div className="md:col-span-4">
                   <h3 className="text-xl sm:text-2xl font-heading font-semibold group-hover:text-bronze transition-colors">{service.title}</h3>
                 </div>
-                <p className="md:col-span-5 text-sm text-white/45 leading-relaxed max-w-xl">{service.description}</p>
+                <p className="md:col-span-5 text-sm text-white/70 leading-relaxed max-w-xl">{service.description}</p>
                 <div className="hidden md:block md:col-span-2 justify-self-end w-28 h-16 overflow-hidden">
-                  <img src={asset(service.image)} alt="" className="w-full h-full object-cover image-grade opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" loading="lazy" />
+                  <img src={asset(service.image)} alt="" className="w-full h-full object-cover image-grade opacity-75 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" loading="lazy" />
                 </div>
               </article>
             </Reveal>
