@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../components/layout/Header';
 import Hero from '../components/home/Hero';
 import Stats from '../components/home/Stats';
+import StandardsPanel from '../components/home/StandardsPanel';
 import Services from '../components/home/Services';
 import About from '../components/home/About';
 import Process from '../components/home/Process';
@@ -17,6 +18,7 @@ const Home = () => {
       <Header />
       <Hero />
       <Stats />
+      <StandardsPanel />
       <Services />
       <About />
       <Process />

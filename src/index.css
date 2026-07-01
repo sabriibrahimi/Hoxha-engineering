@@ -195,9 +195,22 @@
     background-size: 72px 72px;
   }
 
+  .premium-ticker {
+    animation: premium-ticker 28s linear infinite;
+  }
+
+  .premium-ticker:hover {
+    animation-play-state: paused;
+  }
+
   .image-grade {
     filter: saturate(.72) contrast(1.05);
   }
+}
+
+@keyframes premium-ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 @media (prefers-reduced-motion: reduce) {
