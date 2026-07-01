@@ -36,16 +36,6 @@ i18n
         cleanCode: true,
         nonExplicitSupportedLngs: true,
         debug: false
-    })
-    .then(() => {
-        console.log('✅ i18n initialized successfully');
-        console.log('Current language:', i18n.language);
-        console.log('Available languages:', i18n.languages);
-        console.log('Resources loaded:', Object.keys(i18n.getResourceBundle(i18n.language, 'translation')));
-        console.log('Hero title translation:', i18n.getResourceBundle(i18n.language, 'translation').hero?.title);
-    })
-    .catch((error) => {
-        console.error('❌ i18n initialization failed:', error);
     });
 
 export default i18n;
