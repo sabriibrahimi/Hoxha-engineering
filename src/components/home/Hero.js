@@ -21,6 +21,7 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-r from-secondary-dark via-secondary-dark/95 lg:via-secondary-dark/84 to-secondary-dark/10" />
       <div className="absolute inset-0 bg-gradient-to-t from-secondary-dark via-transparent to-secondary-dark/60" />
       <div className="absolute inset-0 bg-noise opacity-70 pointer-events-none" />
+      <div className="absolute inset-0 architectural-grid-dark opacity-35 pointer-events-none" />
 
       <div className="relative z-10 flex-1 container-premium w-full pt-32 sm:pt-36 lg:pt-40 pb-12 flex items-center">
         <div className="grid lg:grid-cols-12 w-full gap-10">
@@ -37,18 +38,42 @@ const Hero = () => {
                 <p className="text-base sm:text-lg text-white/80 leading-relaxed max-w-[38rem]">{t('hero.subtitle')}</p>
                 <div className="mt-5 flex flex-wrap gap-2">
                   {[t('services.architecturalDesign'), t('servicesPage.engineeringServices'), t('servicesPage.constructionServices')].map((item) => (
-                    <span key={item} className="border border-white/20 bg-white/[0.06] px-3 py-2 text-[10px] uppercase tracking-[0.16em] text-white/75">
+                    <span key={item} className="kinetic-chip border-white/20 bg-white/[0.06] text-white/75">
                       {item}
                     </span>
                   ))}
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-3">
-                <Link to={localized('/contact')} className="btn btn-primary">{t('hero.contactBtn')} <span aria-hidden="true">&rarr;</span></Link>
+                <Link to={localized('/contact')} className="btn btn-primary">{t('hero.contactBtn')} <span className="btn-arrow" aria-hidden="true">&rarr;</span></Link>
                 <Link to={localized('/projects')} className="btn btn-outline-light">{t('projectsPage.allProjects')}</Link>
               </div>
             </div>
           </motion.div>
+
+          <motion.aside
+            className="hidden xl:flex xl:col-span-4 xl:col-start-9 self-end justify-end"
+            initial={{ opacity: 0, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: .85, delay: .16, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className="w-full max-w-sm border border-white/15 bg-secondary-dark/45 p-5 backdrop-blur-md">
+              <div className="editorial-kicker editorial-kicker-dark mb-9">
+                <span className="h-1.5 w-1.5 rounded-full bg-bronze" />
+                {t('about.bestPractices')}
+              </div>
+              <p className="text-2xl font-heading font-semibold leading-tight text-white text-balance">
+                {t('about.qualityMaterialsItem')} / {t('about.expertWorkforceItem')} / {t('about.onTimeItem')}
+              </p>
+              <div className="mt-8 grid grid-cols-3 border-t border-white/15 pt-5">
+                {[t('trust.established'), t('trust.experience'), t('trust.region')].map((item) => (
+                  <span key={item} className="text-[9px] uppercase tracking-[0.18em] text-white/55">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </motion.aside>
         </div>
       </div>
 

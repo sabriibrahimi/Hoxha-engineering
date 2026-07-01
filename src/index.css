@@ -54,6 +54,7 @@
   /* Buttons */
   .btn {
     @apply inline-flex items-center justify-center gap-3 font-semibold transition-all duration-300 text-[13px] uppercase tracking-[0.13em] min-h-[50px] shadow-sm;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .btn-primary {
@@ -70,6 +71,15 @@
 
   .btn-ghost {
     @apply px-5 py-2.5 text-muted hover:text-primary gap-1.5;
+  }
+
+  .btn .btn-arrow {
+    @apply inline-block transition-transform duration-300;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .btn:hover .btn-arrow {
+    transform: translateX(4px);
   }
 
   /* Cards */
@@ -105,6 +115,30 @@
 
   .label-premium-light::before {
     @apply bg-bronze;
+  }
+
+  .editorial-kicker {
+    @apply inline-flex items-center gap-2 border border-line bg-white/55 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-muted;
+  }
+
+  .editorial-kicker-dark {
+    @apply border-white/15 bg-white/[0.045] text-white/65;
+  }
+
+  .kinetic-chip {
+    @apply relative overflow-hidden border px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.16em] transition-colors duration-300;
+  }
+
+  .kinetic-chip::after {
+    content: '';
+    @apply absolute inset-y-0 left-0 w-0 transition-all duration-500;
+    background: currentColor;
+    opacity: .08;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .kinetic-chip:hover::after {
+    @apply w-full;
   }
 
   /* Dividers */
@@ -145,6 +179,20 @@
 
   .industrial-rule {
     background-image: repeating-linear-gradient(90deg, transparent 0, transparent 7px, rgba(255,255,255,.16) 7px, rgba(255,255,255,.16) 8px);
+  }
+
+  .architectural-grid {
+    background-image:
+      linear-gradient(rgba(17,26,32,.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(17,26,32,.055) 1px, transparent 1px);
+    background-size: 72px 72px;
+  }
+
+  .architectural-grid-dark {
+    background-image:
+      linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+    background-size: 72px 72px;
   }
 
   .image-grade {

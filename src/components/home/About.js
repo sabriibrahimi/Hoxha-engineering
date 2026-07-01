@@ -9,8 +9,9 @@ const About = () => {
   const path = i18n.language === 'sq' ? '/about' : `/${i18n.language}/about`;
 
   return (
-    <section className="section-premium bg-surface-card overflow-hidden section-divider">
-      <div className="container-premium">
+    <section className="section-premium bg-surface-card overflow-hidden section-divider relative">
+      <div className="absolute inset-0 architectural-grid opacity-35 pointer-events-none" />
+      <div className="container-premium relative">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           <Reveal direction="left" className="lg:col-span-7">
             <div className="relative">
@@ -38,7 +39,7 @@ const About = () => {
                 </div>
               ))}
             </div>
-            <Link to={path} className="btn btn-outline-dark">{t('common.learnMore')} <span aria-hidden="true">&rarr;</span></Link>
+            <Link to={path} className="btn btn-outline-dark">{t('common.learnMore')} <span className="btn-arrow" aria-hidden="true">&rarr;</span></Link>
           </Reveal>
         </div>
       </div>

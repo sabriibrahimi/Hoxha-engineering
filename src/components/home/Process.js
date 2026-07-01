@@ -12,8 +12,9 @@ const Process = () => {
   ];
 
   return (
-    <section className="section-premium bg-surface-warm border-y border-line">
-      <div className="container-premium">
+    <section className="section-premium bg-surface-warm border-y border-line relative overflow-hidden">
+      <div className="absolute inset-0 architectural-grid opacity-45 pointer-events-none" />
+      <div className="container-premium relative">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
           <Reveal className="lg:col-span-4">
             <p className="label-premium">{t('servicesPage.projectManagement')}</p>
@@ -23,8 +24,8 @@ const Process = () => {
           <div className="lg:col-span-8 border-t border-secondary/20">
             {steps.map(([title, desc], i) => (
               <Reveal key={title} delay={i * .06}>
-                <div className="grid sm:grid-cols-12 gap-4 sm:gap-7 py-7 sm:py-8 border-b border-secondary/20 group">
-                  <span className="sm:col-span-1 text-[10px] text-primary tracking-widest mt-1">0{i + 1}</span>
+                <div className="grid sm:grid-cols-12 gap-4 sm:gap-7 py-7 sm:py-8 border-b border-secondary/20 group transition-colors duration-500 hover:bg-white/35">
+                  <span className="sm:col-span-1 text-[10px] text-primary tracking-widest mt-1 transition-transform duration-500 group-hover:translate-x-2">0{i + 1}</span>
                   <h3 className="sm:col-span-4 text-lg font-heading font-semibold text-secondary group-hover:text-primary transition-colors">{title}</h3>
                   <p className="sm:col-span-7 text-sm text-muted leading-relaxed">{desc}</p>
                 </div>
